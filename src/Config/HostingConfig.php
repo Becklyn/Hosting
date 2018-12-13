@@ -4,6 +4,7 @@ namespace Becklyn\Hosting\Config;
 
 
 use Becklyn\Hosting\Git\GitIntegration;
+use Becklyn\Hosting\Project\ProjectVersion;
 
 
 class HostingConfig
@@ -15,19 +16,19 @@ class HostingConfig
 
 
     /**
-     * @var GitIntegration
+     * @var ProjectVersion
      */
-    private $gitIntegration;
+    private $projectVersion;
 
 
     /**
      * @param array          $config
      * @param GitIntegration $gitIntegration
      */
-    public function __construct (array $config, GitIntegration $gitIntegration)
+    public function __construct (array $config, ProjectVersion $projectVersion)
     {
         $this->config = $config;
-        $this->gitIntegration = $gitIntegration;
+        $this->projectVersion = $projectVersion;
     }
 
 
@@ -45,6 +46,6 @@ class HostingConfig
      */
     public function getGitCommit () : ?string
     {
-        return $this->gitIntegration->getVersion();
+        return $this->projectVersion->getVersion();
     }
 }
