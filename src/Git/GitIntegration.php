@@ -35,12 +35,9 @@ class GitIntegration
 
         $git = $this->run('command -v git');
 
-        if ("" === $git)
-        {
-            return null;
-        }
-
-        return $this->run("{$git} rev-parse HEAD");
+        return null !== $git
+            ? $this->run("{$git} rev-parse HEAD")
+            : null;
     }
 
 
@@ -52,14 +49,7 @@ class GitIntegration
      */
     private function run (string $command) : ?string
     {
-        $result = \shell_exec($command);
-
-        if (null === $result)
-        {
-            return null;
-        }
-
-        $result = \trim($result);
+        $result = \trim(\shell_exec($command) ?? "");
 
         return "" !== $result
             ? $result
