@@ -2,88 +2,19 @@
 
 namespace Becklyn\Hosting\Git;
 
-use Psr\Log\LoggerInterface;
-use Psr\SimpleCache\CacheException;
-use Psr\SimpleCache\CacheInterface;
-
-
+/**
+ * Integration with git
+ */
 class GitIntegration
 {
-    const CACHE_KEY = "becklyn.hosting.version";
 
     /**
-     * @var CacheInterface
-     */
-    private $cache;
-
-
-    /**
-     * @var string|null
-     */
-    private $version;
-
-
-    /**
-     * @var bool
-     */
-    private $initialized = false;
-
-
-    /**
-     * @var LoggerInterface|null
-     */
-    private $logger;
-
-
-    public function __construct (CacheInterface $cache, ?LoggerInterface $logger)
-    {
-        $this->cache = $cache;
-        $this->logger = $logger;
-    }
-
-
-    /**
-     * @return string|null
-     */
-    public function getVersion () : ?string
-    {
-        if (!$this->initialized)
-        {
-            $this->version = $this->fetchVersion();
-            $this->initialized = true;
-        }
-
-        return $this->version;
-    }
-
-
-    /**
-     * Fetches the current version
+     * Fetches the commit hash of the current HEAD
      *
      * @return string|null
      */
-    private function fetchVersion () : ?string
+    public function fetchHeadCommitHash () : ?string
     {
-        try
-        {
-            $version = $this->cache->get(self::CACHE_KEY);
-
-            if (null !== $version)
-            {
-                return $version;
-            }
-        }
-        catch (CacheException $e)
-        {
-            if (null !== $this->logger)
-            {
-                $this->logger->error("Reading the cache failed, due to {message}", [
-                    "message" => $e->getMessage(),
-                    "exception" => $e,
-                ]);
-            }
-        }
-
         $git = $this->run('command -v git');
 
         if ("" === $git)
