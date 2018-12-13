@@ -4,7 +4,7 @@ namespace Becklyn\Hosting\Git;
 
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheException;
-use Symfony\Component\Cache\Simple\Psr6Cache;
+use Psr\SimpleCache\CacheInterface;
 
 
 class GitIntegration
@@ -12,7 +12,7 @@ class GitIntegration
     const CACHE_KEY = "becklyn.hosting.version";
 
     /**
-     * @var Psr6Cache
+     * @var CacheInterface
      */
     private $cache;
 
@@ -35,7 +35,7 @@ class GitIntegration
     private $logger;
 
 
-    public function __construct (Psr6Cache $cache, ?LoggerInterface $logger)
+    public function __construct (CacheInterface $cache, ?LoggerInterface $logger)
     {
         $this->cache = $cache;
         $this->logger = $logger;
