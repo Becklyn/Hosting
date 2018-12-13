@@ -5,3 +5,6 @@ services:
 
     Becklyn\Hosting\:
         resource: '../../*'
+
+    Becklyn\Hosting\Git\GitIntegration:
+        $projectDir: '%kernel.project_dir%'

@@ -7,6 +7,19 @@ namespace Becklyn\Hosting\Git;
  */
 class GitIntegration
 {
+    /**
+     * @var string
+     */
+    private $projectDir;
+
+
+    /**
+     * @param string $projectDir
+     */
+    public function __construct (string $projectDir)
+    {
+        $this->projectDir = $projectDir;
+    }
 
     /**
      * Fetches the commit hash of the current HEAD
@@ -15,6 +28,11 @@ class GitIntegration
      */
     public function fetchHeadCommitHash () : ?string
     {
+        if (!\is_dir("{$this->projectDir}/.git"))
+        {
+            return null;
+        }
+
         $git = $this->run('command -v git');
 
         if ("" === $git)
