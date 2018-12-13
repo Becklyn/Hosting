@@ -3,6 +3,9 @@
 namespace Becklyn\Hosting\Config;
 
 
+use Becklyn\Hosting\Git\GitIntegration;
+
+
 class HostingConfig
 {
     /**
@@ -12,11 +15,19 @@ class HostingConfig
 
 
     /**
-     * @param array $config
+     * @var GitIntegration
      */
-    public function __construct (array $config)
+    private $gitIntegration;
+
+
+    /**
+     * @param array          $config
+     * @param GitIntegration $gitIntegration
+     */
+    public function __construct (array $config, GitIntegration $gitIntegration)
     {
         $this->config = $config;
+        $this->gitIntegration = $gitIntegration;
     }
 
 
@@ -26,5 +37,14 @@ class HostingConfig
     public function getDeploymentTier () : string
     {
         return $this->config["tier"];
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getGitCommit () : ?string
+    {
+        return $this->gitIntegration->getVersion();
     }
 }
