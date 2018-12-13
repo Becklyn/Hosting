@@ -47,9 +47,10 @@ class GitIntegration
      */
     public function getVersion () : ?string
     {
-        if ($this->initialized)
+        if (!$this->initialized)
         {
             $this->version = $this->fetchVersion();
+            $this->initialized = true;
         }
 
         return $this->version;
@@ -83,17 +84,36 @@ class GitIntegration
             }
         }
 
-        $git = \trim(\shell_exec('which git'));
+        $git = $this->run('command -v git');
 
         if ("" === $git)
         {
             return null;
         }
 
-        $parsed = \trim(\shell_exec("{$git} rev-parse HEAD"));
+        return $this->run("{$git} rev-parse HEAD");
+    }
 
-        return "" !== $parsed
-            ? $parsed
+
+    /**
+     * Runs the given command
+     *
+     * @param string $command
+     * @return string|null
+     */
+    private function run (string $command) : ?string
+    {
+        $result = \shell_exec($command);
+
+        if (null === $result)
+        {
+            return null;
+        }
+
+        $result = \trim($result);
+
+        return "" !== $result
+            ? $result
             : null;
     }
 }
