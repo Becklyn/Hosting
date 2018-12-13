@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Becklyn\Hosting\:
+        resource: '../../*'
+
+    Becklyn\Hosting\Git\GitIntegration:
+        $projectDir: '%kernel.project_dir%'
