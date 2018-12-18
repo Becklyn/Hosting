@@ -50,6 +50,14 @@ class ProjectVersion
         $this->cache = $cache;
         $this->logger = $logger;
         $this->gitIntegration = $gitIntegration;
+
+        // fetch data from cache
+        $version = $this->cache->get(self::CACHE_KEY);
+        if (null !== $version)
+        {
+            $this->version = $version;
+            $this->initialized = true;
+        }
     }
 
     /**
@@ -61,6 +69,7 @@ class ProjectVersion
         {
             $this->version = $this->gitIntegration->fetchHeadCommitHash();
             $this->initialized = true;
+            $this->cache->set(self::CACHE_KEY, $this->version);
         }
 
         return $this->version;
