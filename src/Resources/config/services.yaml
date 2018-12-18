@@ -8,3 +8,6 @@ services:
 
     Becklyn\Hosting\Git\GitIntegration:
         $projectDir: '%kernel.project_dir%'
+
+    Becklyn\Hosting\Project\ProjectVersion:
+        $cache: '@cache.app'
