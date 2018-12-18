@@ -10,4 +10,4 @@ services:
         $projectDir: '%kernel.project_dir%'
 
     Becklyn\Hosting\Project\ProjectVersion:
-        $cache: '@cache.app'
+        $cachePool: '@cache.app'
