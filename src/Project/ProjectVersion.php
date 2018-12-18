@@ -3,8 +3,8 @@
 namespace Becklyn\Hosting\Project;
 
 use Becklyn\Hosting\Git\GitIntegration;
+use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-use Psr\SimpleCache\CacheInterface;
 
 
 /**
@@ -14,11 +14,6 @@ class ProjectVersion
 {
 
     const CACHE_KEY = "becklyn.hosting.version";
-
-    /**
-     * @var CacheInterface
-     */
-    private $cache;
 
 
     /**
@@ -45,6 +40,16 @@ class ProjectVersion
     private $cachePool;
 
 
+    /**
+     * @var CacheItemInterface
+     */
+    private $cacheItem;
+
+
+    /**
+     * @param GitIntegration         $gitIntegration
+     * @param CacheItemPoolInterface $cachePool
+     */
     public function __construct (GitIntegration $gitIntegration, CacheItemPoolInterface $cachePool)
     {
         $this->cachePool = $cachePool;
@@ -52,7 +57,6 @@ class ProjectVersion
         $this->gitIntegration = $gitIntegration;
 
         // fetch data from cache
-        $version = $this->cache->get(self::CACHE_KEY);
         if ($this->cacheItem->isHit() && null !== $this->cacheItem->get())
         {
             $this->version = $this->cacheItem->get();
