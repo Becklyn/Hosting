@@ -3,7 +3,6 @@
 namespace Becklyn\Hosting\Project;
 
 use Becklyn\Hosting\Git\GitIntegration;
-use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 
 
@@ -34,21 +33,14 @@ class ProjectVersion
 
 
     /**
-     * @var LoggerInterface|null
-     */
-    private $logger;
-
-
-    /**
      * @var GitIntegration
      */
     private $gitIntegration;
 
 
-    public function __construct (GitIntegration $gitIntegration, CacheInterface $cache, ?LoggerInterface $logger)
+    public function __construct (GitIntegration $gitIntegration, CacheInterface $cache)
     {
         $this->cache = $cache;
-        $this->logger = $logger;
         $this->gitIntegration = $gitIntegration;
 
         // fetch data from cache
