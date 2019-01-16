@@ -4,7 +4,10 @@
     "description": "A symfony bundle that configures several hosting-related things.",
     "keywords": [
         "becklyn",
-        "hosting"
+        "hosting",
+        "sentry",
+        "trackjs",
+        "uptime"
     ],
     "homepage": "https://github.com/Becklyn/Hosting",
     "license": "BSD-3-Clause",
@@ -16,10 +19,19 @@
     ],
     "require": {
         "php": "^7.1",
+        "ext-json": "*",
+        "sentry/sentry-symfony": "^2.1",
         "symfony/cache": "^3.4 || ^4.0",
         "symfony/config": "^3.4 || ^4.0",
         "symfony/dependency-injection": "^3.4 || ^4.0",
         "symfony/http-kernel": "^3.4 || ^4.0"
+    },
+    "require-dev": {
+        "twig/twig": "^2.0"
+    },
+    "suggest": {
+        "becklyn/assets-bundle": "For embedding the frontend monitoring using Becklyn's asset() twig function.",
+        "symfony/assets": "For embedding the frontend monitoring using Symfony's asset() twig function."
     },
     "config": {
         "sort-packages": true

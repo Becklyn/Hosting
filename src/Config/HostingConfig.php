@@ -48,4 +48,29 @@ class HostingConfig
     {
         return $this->projectVersion->getVersion();
     }
+
+
+    /**
+     * Returns the track js tracking code
+     *
+     * @return string|null
+     */
+    public function getTrackJsToken () : ?string
+    {
+        return null !== $this->config["trackjs"]
+            ? (string) $this->config["trackjs"]
+            : null;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getUptimeMonitorHtmlString () : ?string
+    {
+        return \sprintf(
+            '<!-- uptime monitor: %s -->',
+            \htmlspecialchars($this->config["project_name"], \ENT_QUOTES)
+        );
+    }
 }
