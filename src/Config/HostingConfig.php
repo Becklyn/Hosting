@@ -66,11 +66,20 @@ class HostingConfig
     /**
      * @return string|null
      */
-    public function getUptimeMonitorHtmlString () : ?string
+    public function getUptimeMonitorHtmlString () : string
     {
         return \sprintf(
             '<!-- uptime monitor: %s -->',
             \htmlspecialchars($this->config["project_name"], \ENT_QUOTES)
         );
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getProjectName () : string
+    {
+        return $this->config["project_name"];
     }
 }
