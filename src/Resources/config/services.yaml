@@ -12,8 +12,7 @@ services:
     Becklyn\Hosting\Project\ProjectVersion:
         $cachePool: '@cache.app'
 
-
-    Becklyn\Hosting\Twig\MonitoringTwigExtension:
+    Becklyn\Hosting\TrackJS\TrackJSEmbed:
         $assetHelper: '@?Becklyn\AssetsBundle\Helper\AssetHelper'
         $packages: '@?Symfony\Component\Asset\Packages'
         $environment: '%kernel.environment%'
