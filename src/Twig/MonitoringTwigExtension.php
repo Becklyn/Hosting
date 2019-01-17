@@ -85,7 +85,7 @@ class MonitoringTwigExtension extends \Twig_Extension
             $assetUrl,
             \json_encode([
                 "token" => $trackJsToken,
-                "application" => $this->hostingConfig->getDeploymentTier(),
+                "application" => $this->hostingConfig->getProjectName(),
                 "version" => $this->hostingConfig->getGitCommit(),
                 "console" => [
                     "display" => false,
