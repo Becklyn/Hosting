@@ -39,7 +39,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
         $response = $event->getResponse();
 
         // skip if not HTML response
-        if (false === \strpos($response->headers->get("Content-Type"), "text/html"))
+        if ($response instanceof BinaryFileResponse || false === \strpos($response->headers->get("Content-Type"), "text/html"))
         {
             return;
         }
