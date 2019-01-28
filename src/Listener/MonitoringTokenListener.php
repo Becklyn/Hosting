@@ -4,6 +4,7 @@ namespace Becklyn\Hosting\Listener;
 
 use Becklyn\Hosting\Config\HostingConfig;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -31,7 +32,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     public function onResponse (FilterResponseEvent $event) : void
     {
         // skip if not master request
-        if (!$event->isMasterRequest() || null === $this->uptimeHtmlEmbed)
+        if (null === $this->uptimeHtmlEmbed || !$event->isMasterRequest())
         {
             return;
         }
@@ -60,7 +61,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     /**
      * @inheritDoc
      */
-    public static function getSubscribedEvents ()
+    public static function getSubscribedEvents () : array
     {
         return [
             KernelEvents::RESPONSE => "onResponse",
