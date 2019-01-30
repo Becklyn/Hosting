@@ -31,7 +31,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     public function onResponse (FilterResponseEvent $event) : void
     {
         // skip if not master request
-        if (null === $this->uptimeHtmlEmbed || !$event->isMasterRequest())
+        if (!$event->isMasterRequest() || null === $this->uptimeHtmlEmbed)
         {
             return;
         }
