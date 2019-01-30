@@ -46,7 +46,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
 
         $content = $response->getContent();
 
-        if (false !== ($position = \strrpos($content, '</body>')))
+        if (\is_string($content) && false !== ($position = \strrpos($content, '</body>')))
         {
             $content = \substr($content, 0, $position)
                 . $this->uptimeHtmlEmbed
@@ -60,7 +60,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     /**
      * @inheritDoc
      */
-    public static function getSubscribedEvents ()
+    public static function getSubscribedEvents () : array
     {
         return [
             KernelEvents::RESPONSE => "onResponse",
