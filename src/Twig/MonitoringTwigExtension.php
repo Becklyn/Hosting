@@ -30,13 +30,11 @@ class MonitoringTwigExtension extends \Twig_Extension
     }
 
     /**
-     * @param string $tier
-     *
-     * @return bool
+     * @return string
      */
-    public function hostingTier (string $tier) : bool
+    public function hostingTier () : string
     {
-        return $tier === $this->hostingConfig->getDeploymentTier();
+        return $this->hostingConfig->getDeploymentTier();
     }
 
 
@@ -47,16 +45,7 @@ class MonitoringTwigExtension extends \Twig_Extension
     {
         return [
             new \Twig_Function("hosting_embed_monitoring", [$this->trackJSEmbed, "getEmbedHtml"], ["is_safe" => ["html"]]),
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getTests () : iterable
-    {
-        return [
-            new \Twig_Test("hosting_tier", [$this, "hostingTier"]),
+            new \Twig_Function("hosting_tier", [$this, "hostingTier"]),
         ];
     }
 }

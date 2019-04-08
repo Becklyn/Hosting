@@ -1,10 +1,10 @@
 Changelog for 2.1.0
 ===================
 
-*   Added new Twig test `hosting_tier` that allows you to integrate your own custom logic based on the hosting tier
+*   Added new Twig function `hosting_tier` that allows you to integrate your own custom logic based on the hosting tier
     
     ```twig
-    {%- if "dev" is hosting_tier -%}
+    {%- if "dev" == hosting_tier() -%}
         {# do something on dev #}
     {%- endif -%}
     ```
