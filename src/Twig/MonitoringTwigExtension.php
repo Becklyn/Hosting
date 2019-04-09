@@ -30,22 +30,13 @@ class MonitoringTwigExtension extends \Twig_Extension
     }
 
     /**
-     * @return string
-     */
-    public function hostingTier () : string
-    {
-        return $this->hostingConfig->getDeploymentTier();
-    }
-
-
-    /**
      * @inheritdoc
      */
     public function getFunctions () : iterable
     {
         return [
             new \Twig_Function("hosting_embed_monitoring", [$this->trackJSEmbed, "getEmbedHtml"], ["is_safe" => ["html"]]),
-            new \Twig_Function("hosting_tier", [$this, "hostingTier"]),
+            new \Twig_Function("hosting_tier", [$this->hostingConfig, "getDeploymentTier"]),
         ];
     }
 }
