@@ -37,9 +37,10 @@ class MonitoringTokenListener implements EventSubscriberInterface
         }
 
         $response = $event->getResponse();
+        $contentType = $response->headers->get("Content-Type");
 
         // skip if not HTML response
-        if (false === \strpos($response->headers->get("Content-Type"), "text/html"))
+        if (null === $contentType || false === \strpos($contentType, "text/html"))
         {
             return;
         }
@@ -63,7 +64,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     public static function getSubscribedEvents () : array
     {
         return [
-            KernelEvents::RESPONSE => "onResponse",
+            KernelEvents::RESPONSE => ["onResponse", -1000],
         ];
     }
 }
