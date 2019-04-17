@@ -64,7 +64,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     public static function getSubscribedEvents () : array
     {
         return [
-            KernelEvents::RESPONSE => "onResponse",
+            KernelEvents::RESPONSE => ["onResponse", -1000],
         ];
     }
 }
