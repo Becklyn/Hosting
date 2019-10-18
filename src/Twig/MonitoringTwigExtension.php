@@ -4,14 +4,17 @@ namespace Becklyn\Hosting\Twig;
 
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\TrackJS\TrackJSEmbed;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 
-class MonitoringTwigExtension extends \Twig_Extension
+class MonitoringTwigExtension extends AbstractExtension
 {
     /**
      * @var TrackJSEmbed
      */
     private $trackJSEmbed;
+
 
     /**
      * @var HostingConfig
@@ -29,14 +32,15 @@ class MonitoringTwigExtension extends \Twig_Extension
         $this->hostingConfig = $hostingConfig;
     }
 
+
     /**
      * @inheritdoc
      */
     public function getFunctions () : iterable
     {
         return [
-            new \Twig_Function("hosting_embed_monitoring", [$this->trackJSEmbed, "getEmbedHtml"], ["is_safe" => ["html"]]),
-            new \Twig_Function("hosting_tier", [$this->hostingConfig, "getDeploymentTier"]),
+            new TwigFunction("hosting_embed_monitoring", [$this->trackJSEmbed, "getEmbedHtml"], ["is_safe" => ["html"]]),
+            new TwigFunction("hosting_tier", [$this->hostingConfig, "getDeploymentTier"]),
         ];
     }
 }
