@@ -41,6 +41,15 @@ class HostingConfig
 
 
     /**
+     * @return bool
+     */
+    public function isInDevelopmentTier () : bool
+    {
+        return "development" === $this->config["tier"];
+    }
+
+
+    /**
      * @return string|null
      */
     public function getGitCommit () : ?string

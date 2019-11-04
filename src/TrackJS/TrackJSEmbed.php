@@ -74,7 +74,7 @@ class TrackJSEmbed
         $trackJsToken = $this->hostingConfig->getTrackJsToken();
 
         // only embed if token is set, in production and not in debug
-        if (null === $trackJsToken || $this->isDebug || !\in_array($this->hostingConfig->getDeploymentTier(), ["production", "staging"]))
+        if (null === $trackJsToken || $this->isDebug || $this->hostingConfig->isInDevelopmentTier())
         {
             return "";
         }
