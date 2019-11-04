@@ -3,7 +3,6 @@
 namespace Becklyn\Hosting\Config;
 
 
-use Becklyn\Hosting\Git\GitIntegration;
 use Becklyn\Hosting\Project\ProjectVersion;
 
 
@@ -23,7 +22,7 @@ class HostingConfig
 
     /**
      * @param array          $config
-     * @param GitIntegration $gitIntegration
+     * @param ProjectVersion $projectVersion
      */
     public function __construct (array $config, ProjectVersion $projectVersion)
     {
