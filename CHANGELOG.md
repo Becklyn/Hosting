@@ -1,3 +1,13 @@
+Changelog for 2.1.1
+===================
+
+*   Add PHP Code Style fixer to bundle.
+*   Add phpstan stan.
+*   Add PHPUnit.
+*   Add CODEOWNERS file.
+*   Add travis configuration
+*   Add becklyn/assets-bundle to require dev to prevent phpstan errors.
+
 Changelog for 2.1.0
 ===================
 
