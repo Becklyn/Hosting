@@ -3,7 +3,7 @@
 namespace Becklyn\Hosting\Git;
 
 /**
- * Integration with git
+ * Integration with git.
  */
 class GitIntegration
 {
@@ -22,7 +22,7 @@ class GitIntegration
     }
 
     /**
-     * Fetches the commit hash of the current HEAD
+     * Fetches the commit hash of the current HEAD.
      *
      * @return string|null
      */
@@ -42,9 +42,10 @@ class GitIntegration
 
 
     /**
-     * Runs the given command
+     * Runs the given command.
      *
      * @param string $command
+     *
      * @return string|null
      */
     private function run (string $command) : ?string

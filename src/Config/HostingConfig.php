@@ -2,9 +2,7 @@
 
 namespace Becklyn\Hosting\Config;
 
-
 use Becklyn\Hosting\Project\ProjectVersion;
-
 
 class HostingConfig
 {
@@ -59,7 +57,7 @@ class HostingConfig
 
 
     /**
-     * Returns the track js tracking code
+     * Returns the track js tracking code.
      *
      * @return string|null
      */
@@ -72,7 +70,7 @@ class HostingConfig
 
 
     /**
-     * @return string|null
+     * @return string
      */
     public function getUptimeMonitorHtmlString () : string
     {

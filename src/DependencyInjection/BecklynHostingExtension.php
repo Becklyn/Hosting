@@ -13,7 +13,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 class BecklynHostingExtension extends Extension
 {
     /**
@@ -30,7 +29,7 @@ class BecklynHostingExtension extends Extension
     /**
      * @inheritdoc
      */
-    public function load (array $configs, ContainerBuilder $container)
+    public function load (array $configs, ContainerBuilder $container) : void
     {
         // load services
         $loader = new YamlFileLoader(
@@ -52,7 +51,7 @@ class BecklynHostingExtension extends Extension
     /**
      * @inheritDoc
      */
-    public function prepend (ContainerBuilder $container)
+    public function prepend (ContainerBuilder $container) : void
     {
         // add sane defaults for the sentry configuration
         $container->prependExtensionConfig('sentry', [
@@ -61,7 +60,7 @@ class BecklynHostingExtension extends Extension
                 "processors" => [
                     Raven_Processor_SanitizeDataProcessor::class,
                     CustomSanitizeDataProcessor::class,
-                ]
+                ],
             ],
             "skip_capture" => [
                 AccessDeniedHttpException::class,

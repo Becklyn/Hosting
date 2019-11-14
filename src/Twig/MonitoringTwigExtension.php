@@ -7,7 +7,6 @@ use Becklyn\Hosting\TrackJS\TrackJSEmbed;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-
 class MonitoringTwigExtension extends AbstractExtension
 {
     /**

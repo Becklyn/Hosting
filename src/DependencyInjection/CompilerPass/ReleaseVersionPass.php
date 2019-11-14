@@ -6,7 +6,6 @@ use Becklyn\Hosting\Git\GitIntegration;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-
 class ReleaseVersionPass implements CompilerPassInterface
 {
     /**
@@ -16,7 +15,7 @@ class ReleaseVersionPass implements CompilerPassInterface
 
 
     /**
-     * @param mixed $projectName
+     * @param string $projectName
      */
     public function setProjectName (string $projectName) : void
     {
@@ -28,7 +27,7 @@ class ReleaseVersionPass implements CompilerPassInterface
     /**
      * @inheritDoc
      */
-    public function process (ContainerBuilder $container)
+    public function process (ContainerBuilder $container) : void
     {
         if (!$container->hasDefinition("sentry.client"))
         {

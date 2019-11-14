@@ -6,13 +6,11 @@ use Becklyn\Hosting\Git\GitIntegration;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
-
 /**
- * Fetches the version of the project
+ * Fetches the version of the project.
  */
 class ProjectVersion
 {
-
     const CACHE_KEY = "becklyn.hosting.version";
 
 
