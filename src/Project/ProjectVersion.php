@@ -45,8 +45,6 @@ class ProjectVersion
 
 
     /**
-     * @param GitIntegration         $gitIntegration
-     * @param CacheItemPoolInterface $cachePool
      */
     public function __construct (GitIntegration $gitIntegration, CacheItemPoolInterface $cachePool)
     {
@@ -63,7 +61,6 @@ class ProjectVersion
     }
 
     /**
-     * @return string|null
      */
     public function getVersion () : ?string
     {

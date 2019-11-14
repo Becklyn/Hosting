@@ -19,8 +19,6 @@ class HostingConfig
 
 
     /**
-     * @param array          $config
-     * @param ProjectVersion $projectVersion
      */
     public function __construct (array $config, ProjectVersion $projectVersion)
     {
@@ -30,7 +28,6 @@ class HostingConfig
 
 
     /**
-     * @return string
      */
     public function getDeploymentTier () : string
     {
@@ -39,7 +36,6 @@ class HostingConfig
 
 
     /**
-     * @return bool
      */
     public function isInDevelopmentTier () : bool
     {
@@ -48,7 +44,6 @@ class HostingConfig
 
 
     /**
-     * @return string|null
      */
     public function getGitCommit () : ?string
     {
@@ -58,8 +53,6 @@ class HostingConfig
 
     /**
      * Returns the track js tracking code.
-     *
-     * @return string|null
      */
     public function getTrackJsToken () : ?string
     {
@@ -70,7 +63,6 @@ class HostingConfig
 
 
     /**
-     * @return string
      */
     public function getUptimeMonitorHtmlString () : string
     {
@@ -82,7 +74,6 @@ class HostingConfig
 
 
     /**
-     * @return string
      */
     public function getProjectName () : string
     {

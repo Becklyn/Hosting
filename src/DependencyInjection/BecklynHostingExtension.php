@@ -5,7 +5,6 @@ namespace Becklyn\Hosting\DependencyInjection;
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
 use Becklyn\Hosting\Sentry\CustomSanitizeDataProcessor;
-use Raven_Processor_SanitizeDataProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -58,7 +57,7 @@ class BecklynHostingExtension extends Extension
             "options" => [
                 "curl_method" => "async",
                 "processors" => [
-                    Raven_Processor_SanitizeDataProcessor::class,
+                    \Raven_Processor_SanitizeDataProcessor::class,
                     CustomSanitizeDataProcessor::class,
                 ],
             ],

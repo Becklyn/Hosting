@@ -22,8 +22,6 @@ class MonitoringTwigExtension extends AbstractExtension
 
 
     /**
-     * @param TrackJSEmbed  $trackJSEmbed
-     * @param HostingConfig $hostingConfig
      */
     public function __construct (TrackJSEmbed $trackJSEmbed, HostingConfig $hostingConfig)
     {

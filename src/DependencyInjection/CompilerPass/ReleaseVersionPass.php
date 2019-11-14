@@ -15,7 +15,6 @@ class ReleaseVersionPass implements CompilerPassInterface
 
 
     /**
-     * @param string $projectName
      */
     public function setProjectName (string $projectName) : void
     {

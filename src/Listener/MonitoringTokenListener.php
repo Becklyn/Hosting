@@ -16,7 +16,6 @@ class MonitoringTokenListener implements EventSubscriberInterface
 
 
     /**
-     * @param HostingConfig $config
      */
     public function __construct (HostingConfig $config)
     {
@@ -25,7 +24,6 @@ class MonitoringTokenListener implements EventSubscriberInterface
 
 
     /**
-     * @param FilterResponseEvent $event
      */
     public function onResponse (FilterResponseEvent $event) : void
     {
@@ -39,18 +37,18 @@ class MonitoringTokenListener implements EventSubscriberInterface
         $contentType = $response->headers->get("Content-Type");
 
         // skip if not HTML response
-        if (null === $contentType || false === \strpos($contentType, "text/html"))
+        if (null === $contentType || false === \mb_strpos($contentType, "text/html"))
         {
             return;
         }
 
         $content = $response->getContent();
 
-        if (\is_string($content) && false !== ($position = \strrpos($content, '</body>')))
+        if (\is_string($content) && false !== ($position = \mb_strrpos($content, '</body>')))
         {
-            $content = \substr($content, 0, $position)
+            $content = \mb_substr($content, 0, $position)
                 . $this->uptimeHtmlEmbed
-                . \substr($content, $position);
+                . \mb_substr($content, $position);
 
             $response->setContent($content);
         }

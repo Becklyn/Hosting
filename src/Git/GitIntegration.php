@@ -14,7 +14,6 @@ class GitIntegration
 
 
     /**
-     * @param string $projectDir
      */
     public function __construct (string $projectDir)
     {
@@ -23,8 +22,6 @@ class GitIntegration
 
     /**
      * Fetches the commit hash of the current HEAD.
-     *
-     * @return string|null
      */
     public function fetchHeadCommitHash () : ?string
     {
@@ -43,10 +40,6 @@ class GitIntegration
 
     /**
      * Runs the given command.
-     *
-     * @param string $command
-     *
-     * @return string|null
      */
     private function run (string $command) : ?string
     {
