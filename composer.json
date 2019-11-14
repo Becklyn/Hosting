@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "ext-json": "*",
         "sentry/sentry-symfony": "^2.1",
         "symfony/cache": "^3.4 || ^4.0",
@@ -27,6 +27,8 @@
         "symfony/http-kernel": "^3.4 || ^4.0"
     },
     "require-dev": {
+        "becklyn/assets-bundle": "^2.6",
+        "becklyn/php-cs": "^1.0.9",
         "twig/twig": "^2.0"
     },
     "suggest": {
