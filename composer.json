@@ -29,6 +29,7 @@
     "require-dev": {
         "becklyn/assets-bundle": "^2.6",
         "becklyn/php-cs": "^1.0.9",
+        "symfony/phpunit-bridge": "^4.3.8",
         "twig/twig": "^2.0"
     },
     "suggest": {
