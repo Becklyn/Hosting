@@ -7,7 +7,6 @@ use Becklyn\Hosting\TrackJS\TrackJSEmbed;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-
 class MonitoringTwigExtension extends AbstractExtension
 {
     /**
@@ -23,8 +22,6 @@ class MonitoringTwigExtension extends AbstractExtension
 
 
     /**
-     * @param TrackJSEmbed  $trackJSEmbed
-     * @param HostingConfig $hostingConfig
      */
     public function __construct (TrackJSEmbed $trackJSEmbed, HostingConfig $hostingConfig)
     {

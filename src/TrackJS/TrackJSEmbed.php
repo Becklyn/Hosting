@@ -7,7 +7,6 @@ use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\Exception\AssetIntegrationFailedException;
 use Symfony\Component\Asset\Packages;
 
-
 class TrackJSEmbed
 {
     /**
@@ -37,11 +36,6 @@ class TrackJSEmbed
 
 
     /**
-     * @param HostingConfig    $hostingConfig
-     * @param AssetHelper|null $assetHelper
-     * @param Packages|null    $packages
-     * @param string           $environment
-     * @param string           $isDebug
      */
     public function __construct (
         HostingConfig $hostingConfig,
@@ -60,9 +54,7 @@ class TrackJSEmbed
 
 
     /**
-     * Returns the embed HTML for TrackJS
-     *
-     * @return string
+     * Returns the embed HTML for TrackJS.
      */
     public function getEmbedHtml () : string
     {

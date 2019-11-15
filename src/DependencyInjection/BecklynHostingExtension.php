@@ -5,14 +5,12 @@ namespace Becklyn\Hosting\DependencyInjection;
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
 use Becklyn\Hosting\Sentry\CustomSanitizeDataProcessor;
-use Raven_Processor_SanitizeDataProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 
 class BecklynHostingExtension extends Extension
 {
@@ -30,7 +28,7 @@ class BecklynHostingExtension extends Extension
     /**
      * @inheritdoc
      */
-    public function load (array $configs, ContainerBuilder $container)
+    public function load (array $configs, ContainerBuilder $container) : void
     {
         // load services
         $loader = new YamlFileLoader(
@@ -52,16 +50,16 @@ class BecklynHostingExtension extends Extension
     /**
      * @inheritDoc
      */
-    public function prepend (ContainerBuilder $container)
+    public function prepend (ContainerBuilder $container) : void
     {
         // add sane defaults for the sentry configuration
         $container->prependExtensionConfig('sentry', [
             "options" => [
                 "curl_method" => "async",
                 "processors" => [
-                    Raven_Processor_SanitizeDataProcessor::class,
+                    \Raven_Processor_SanitizeDataProcessor::class,
                     CustomSanitizeDataProcessor::class,
-                ]
+                ],
             ],
             "skip_capture" => [
                 AccessDeniedHttpException::class,
