@@ -15,12 +15,7 @@ class TrackJSEmbed
     private $hostingConfig;
 
     /**
-     * @var string
-     */
-    private $environment;
-
-    /**
-     * @var string
+     * @var bool
      */
     private $isDebug;
 
@@ -41,14 +36,12 @@ class TrackJSEmbed
         HostingConfig $hostingConfig,
         ?AssetHelper $assetHelper,
         ?Packages $packages,
-        string $environment,
-        string $isDebug
+        bool $isDebug
     )
     {
         $this->hostingConfig = $hostingConfig;
         $this->assetHelper = $assetHelper;
         $this->packages = $packages;
-        $this->environment = $environment;
         $this->isDebug = $isDebug;
     }
 
@@ -87,6 +80,5 @@ class TrackJSEmbed
                 ],
             ])
         );
-
     }
 }
