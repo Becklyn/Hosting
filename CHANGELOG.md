@@ -1,5 +1,12 @@
-Changelog for 2.1.1
-===================
+2.1.2
+=====
+
+*   (improvement) Re-add support for PHP 7.1
+*   (internal) Code cleanup
+
+
+2.1.1
+=====
 
 *   Add PHP Code Style fixer to bundle.
 *   Add phpstan stan.
@@ -8,8 +15,8 @@ Changelog for 2.1.1
 *   Add travis configuration
 *   Add becklyn/assets-bundle to require dev to prevent phpstan errors.
 
-Changelog for 2.1.0
-===================
+2.1.0
+=====
 
 *   Added new Twig function `hosting_tier` that allows you to integrate your own custom logic based on the hosting tier
     
@@ -19,7 +26,7 @@ Changelog for 2.1.0
     {%- endif -%}
     ```
 
-Changelog for 2.0.0
-===================
+2.0.0
+=====
 
 *   The monitoring bundle (`becklyn/monitoring`) was integrated into this bundle and will be replaced by it from now on.
