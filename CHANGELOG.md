@@ -1,8 +1,12 @@
-2.1.2
+2.2.1
 =====
 
 *   (improvement) Re-add support for PHP 7.1
 *   (internal) Code cleanup
+
+
+2.2.0
+=====
 
 
 2.1.1
