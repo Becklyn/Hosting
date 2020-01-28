@@ -1,5 +1,5 @@
-next patch
-==========
+2.2.2
+=====
 
 *   (improvement) Add support for Symfony 5.
 
