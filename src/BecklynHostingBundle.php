@@ -51,4 +51,13 @@ class BecklynHostingBundle extends Bundle
     {
         return new BecklynHostingExtension($this->releaseVersionPass);
     }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getPath ()
+    {
+        return \dirname(__DIR__);
+    }
 }
