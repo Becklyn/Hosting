@@ -1,3 +1,9 @@
+3.0.3
+=====
+
+*   (bug) Fix failing git integration command.
+
+
 3.0.2
 =====
 

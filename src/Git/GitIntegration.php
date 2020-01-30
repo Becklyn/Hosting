@@ -2,8 +2,6 @@
 
 namespace Becklyn\Hosting\Git;
 
-use Symfony\Component\Process\Process;
-
 /**
  * Integration with git.
  */
@@ -30,10 +28,10 @@ class GitIntegration
             return null;
         }
 
-        $git = $this->run(["command", "-v", "git"]);
+        $git = $this->run('command -v git');
 
         return null !== $git
-            ? $this->run([$git, "rev-parse", "HEAD"])
+            ? $this->run("{$git} rev-parse HEAD")
             : null;
     }
 
@@ -41,12 +39,9 @@ class GitIntegration
     /**
      * Runs the given command.
      */
-    private function run (array $command) : ?string
+    private function run (string $command) : ?string
     {
-        $process = new Process($command);
-        $process->mustRun();
-
-        $result = \trim($process->getOutput());
+        $result = \trim(\shell_exec($command) ?? "");
 
         return "" !== $result
             ? $result
