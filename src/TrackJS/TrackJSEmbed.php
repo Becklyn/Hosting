@@ -31,7 +31,6 @@ class TrackJSEmbed
     {
         $this->hostingConfig = $hostingConfig;
         $this->assetHelper = $assetHelper;
-        $this->packages = $packages;
         $this->environment = $environment;
         $this->isDebug = $isDebug;
     }
