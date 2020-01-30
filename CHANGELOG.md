@@ -1,3 +1,12 @@
+3.0.0
+=====
+
+*   (bug) Properly support Symfony 5.
+*   (improvement) Bump required packages.
+*   (internal) Bump sentry packages.
+*   (feature) Add `project_name` + `installation_key`.
+
+
 2.2.2
 =====
 
