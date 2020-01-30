@@ -30,15 +30,11 @@ class BecklynHostingBundle extends Bundle
      */
     public function build (ContainerBuilder $container) : void
     {
-        if (\class_exists(RegisterAssetNamespacesCompilerPass::class))
-        {
-            $container->addCompilerPass(
-                new RegisterAssetNamespacesCompilerPass([
-                    "hosting" => __DIR__ . "/../build",
-                ])
-            );
-
-        }
+        $container->addCompilerPass(
+            new RegisterAssetNamespacesCompilerPass([
+                "hosting" => __DIR__ . "/../build",
+            ])
+        );
 
         $container->addCompilerPass($this->releaseVersionPass);
     }
