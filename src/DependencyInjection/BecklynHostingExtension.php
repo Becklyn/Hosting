@@ -4,7 +4,7 @@ namespace Becklyn\Hosting\DependencyInjection;
 
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
-use Becklyn\Hosting\Sentry\CustomSanitizeDataProcessor;
+use Sentry\Options;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -44,6 +44,9 @@ class BecklynHostingExtension extends Extension
 
         // set release version here, as we need the project name
         $this->releaseVersionPass->setProjectName($config["project_name"]);
+
+        $container->getDefinition(Options::class)
+            ->addMethodCall("setEnvironment", $config["tier"]);
     }
 
 
@@ -56,14 +59,12 @@ class BecklynHostingExtension extends Extension
         $container->prependExtensionConfig('sentry', [
             "options" => [
                 "curl_method" => "async",
-                "processors" => [
-                    \Raven_Processor_SanitizeDataProcessor::class,
-                    CustomSanitizeDataProcessor::class,
+                "project_root" => $container->getParameter("kernel.project_dir"),
+                "send_default_pii" => false,
+                "excluded_exceptions" => [
+                    AccessDeniedHttpException::class,
+                    NotFoundHttpException::class,
                 ],
-            ],
-            "skip_capture" => [
-                AccessDeniedHttpException::class,
-                NotFoundHttpException::class,
             ],
         ]);
     }

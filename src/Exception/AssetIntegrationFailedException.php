@@ -2,6 +2,6 @@
 
 namespace Becklyn\Hosting\Exception;
 
-class AssetIntegrationFailedException extends \RuntimeException
+class AssetIntegrationFailedException extends \RuntimeException implements HostingException
 {
 }

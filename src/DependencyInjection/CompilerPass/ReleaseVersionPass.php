@@ -3,6 +3,7 @@
 namespace Becklyn\Hosting\DependencyInjection\CompilerPass;
 
 use Becklyn\Hosting\Git\GitIntegration;
+use Sentry\Options;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -36,7 +37,7 @@ class ReleaseVersionPass implements CompilerPassInterface
         $git = new GitIntegration($container->getParameter('kernel.project_dir'));
         $version = $git->fetchHeadCommitHash() ?? "?";
 
-        $container->getDefinition("sentry.client")
+        $container->getDefinition(Options::class)
             ->addMethodCall("setRelease", ["{$this->projectName}@{$version}"]);
     }
 }
