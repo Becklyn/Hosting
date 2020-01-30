@@ -9,9 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ReleaseVersionPass implements CompilerPassInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $projectName;
 
 

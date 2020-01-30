@@ -14,9 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BecklynHostingExtension extends Extension
 {
-    /**
-     * @var ReleaseVersionPass
-     */
+    /** @var ReleaseVersionPass */
     private $releaseVersionPass;
 
 

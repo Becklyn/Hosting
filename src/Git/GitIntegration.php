@@ -9,9 +9,7 @@ use Symfony\Component\Process\Process;
  */
 class GitIntegration
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $projectDir;
 
 

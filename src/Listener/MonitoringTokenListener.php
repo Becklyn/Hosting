@@ -10,9 +10,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class MonitoringTokenListener implements EventSubscriberInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $uptimeHtmlEmbed;
 
 

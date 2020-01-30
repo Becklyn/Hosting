@@ -4,28 +4,19 @@ namespace Becklyn\Hosting\TrackJS;
 
 use Becklyn\AssetsBundle\Helper\AssetHelper;
 use Becklyn\Hosting\Config\HostingConfig;
-use Becklyn\Hosting\Exception\AssetIntegrationFailedException;
 
 class TrackJSEmbed
 {
-    /**
-     * @var HostingConfig
-     */
+    /** @var HostingConfig */
     private $hostingConfig;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $environment;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $isDebug;
 
-    /**
-     * @var AssetHelper
-     */
+    /** @var AssetHelper */
     private $assetHelper;
 
 

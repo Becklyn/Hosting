@@ -6,15 +6,10 @@ use Becklyn\Hosting\Project\ProjectVersion;
 
 class HostingConfig
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $config;
 
-
-    /**
-     * @var ProjectVersion
-     */
+    /** @var ProjectVersion */
     private $projectVersion;
 
 

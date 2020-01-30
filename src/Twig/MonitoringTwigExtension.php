@@ -9,15 +9,10 @@ use Twig\TwigFunction;
 
 class MonitoringTwigExtension extends AbstractExtension
 {
-    /**
-     * @var TrackJSEmbed
-     */
+    /** @var TrackJSEmbed */
     private $trackJSEmbed;
 
-
-    /**
-     * @var HostingConfig
-     */
+    /** @var HostingConfig */
     private $hostingConfig;
 
 
