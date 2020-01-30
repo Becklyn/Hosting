@@ -2,11 +2,11 @@
 
 namespace Becklyn\Hosting\Sentry\Integration;
 
+use function Sentry\configureScope;
 use Sentry\Event;
 use Sentry\Integration\IntegrationInterface;
 use Sentry\State\Scope;
 use Symfony\Component\Security\Core\Security;
-use function Sentry\configureScope;
 
 class UserRoleSentryIntegration implements IntegrationInterface
 {
@@ -26,7 +26,7 @@ class UserRoleSentryIntegration implements IntegrationInterface
     public function setupOnce () : void
     {
         configureScope(
-            function (Scope $scope): void
+            function (Scope $scope) : void
             {
                 $scope->addEventProcessor(
                     function (Event $event) : Event

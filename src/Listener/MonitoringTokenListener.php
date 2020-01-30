@@ -4,7 +4,6 @@ namespace Becklyn\Hosting\Listener;
 
 use Becklyn\Hosting\Config\HostingConfig;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 

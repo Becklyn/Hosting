@@ -51,7 +51,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                     AccessDeniedHttpException::class,
                     AccessDeniedException::class,
                     NotFoundHttpException::class,
-                ]
+                ],
             ]);
     }
 
@@ -59,7 +59,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
     /**
      * @inheritDoc
      */
-    public function prepend (ContainerBuilder $container)
+    public function prepend (ContainerBuilder $container) : void
     {
         $container->prependExtensionConfig("sentry", [
             "options" => [

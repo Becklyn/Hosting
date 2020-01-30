@@ -26,8 +26,6 @@ class ProjectVersion
 
 
     /**
-     * @param GitIntegration $gitIntegration
-     * @param CacheInterface $cache
      */
     public function __construct (GitIntegration $gitIntegration, CacheInterface $cache)
     {
