@@ -50,7 +50,7 @@ class TrackJSEmbed
         }
 
         return \sprintf(
-            '<script src="%s"></script><script>window.TrackJS && TrackJS.install(%s)</script>',
+            '<script src="%s" defer></script><script>window.TrackJS && TrackJS.install(%s)</script>',
             $this->assetHelper->getUrl("@hosting/vendor/trackjs.js"),
             \json_encode([
                 "token" => $trackJsToken,

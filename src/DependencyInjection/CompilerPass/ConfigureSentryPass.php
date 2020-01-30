@@ -25,17 +25,11 @@ class ConfigureSentryPass implements CompilerPassInterface
     }
 
 
-
     /**
      * @inheritDoc
      */
     public function process (ContainerBuilder $container) : void
     {
-        if (!$container->hasDefinition("sentry.client"))
-        {
-            return;
-        }
-
         $git = new GitIntegration($container->getParameter('kernel.project_dir'));
         $version = $git->fetchHeadCommitHash() ?? "?";
 

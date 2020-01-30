@@ -4,15 +4,16 @@ namespace Becklyn\Hosting\DependencyInjection;
 
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
-use Sentry\Options;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class BecklynHostingExtension extends Extension
+class BecklynHostingExtension extends Extension implements PrependExtensionInterface
 {
     /** @var ConfigureSentryPass */
     private $configureSentryPass;
@@ -42,24 +43,35 @@ class BecklynHostingExtension extends Extension
 
         // set release version here, as we need the project name
         $this->configureSentryPass->setConfig($config["installation"], $config["tier"]);
+
+        $container->getDefinition("becklyn_hosting_ignored_errors")
+            ->setArgument(0, [
+                "ignore_exceptions" => [
+                    AccessDeniedHttpException::class,
+                    AccessDeniedException::class,
+                    NotFoundHttpException::class,
+                ]
+            ]);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function prepend (ContainerBuilder $container) : void
+    public function prepend (ContainerBuilder $container)
     {
-        // add sane defaults for the sentry configuration
         $container->prependExtensionConfig("sentry", [
             "options" => [
-                "curl_method" => "async",
-                "project_root" => $container->getParameter("kernel.project_dir"),
-                "send_default_pii" => false,
-                "excluded_exceptions" => [
-                    AccessDeniedHttpException::class,
-                    NotFoundHttpException::class,
+                "integrations" => [
+                    "@becklyn_hosting_ignored_errors",
                 ],
+                "in_app_exclude" => [
+                    '%kernel.cache_dir%',
+                    '%kernel.project_dir%/vendor',
+                    '%kernel.project_dir%/vendor-bin',
+                ],
+                "project_root" => '%kernel.project_dir%',
+                "send_default_pii" => false,
             ],
         ]);
     }

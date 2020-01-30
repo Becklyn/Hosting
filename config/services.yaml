@@ -10,3 +10,7 @@ services:
     Becklyn\Hosting\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,BecklynHostingBundle.php}'
+
+    becklyn_hosting_ignored_errors:
+        class: Sentry\Integration\IgnoreErrorsIntegration
+
