@@ -29,7 +29,7 @@ class BecklynHostingConfiguration implements ConfigurationInterface
                     ->isRequired()
                     ->info("An unique identifier for this project installation. Used for identifying it in sentry and uptime monitoring.")
                     ->validate()
-                        ->ifTrue(function ($value) { return \preg_match('~[^a-z0-9\\-_]~', $value)})
+                        ->ifTrue(function ($value) { return \preg_match('~[^a-z0-9\\-_]~', $value); })
                         ->thenInvalid("You may only use a-z, '-' and '_' as project key, but '%s' used")
                     ->end()
                 ->end()
