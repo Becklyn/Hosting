@@ -12,9 +12,9 @@ class BecklynHostingConfiguration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder ()
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder("becklyn_hosting");
 
-        $treeBuilder->root("becklyn_hosting")
+        $treeBuilder->getRootNode()
             ->children()
                 ->scalarNode("tier")
                     ->isRequired()
