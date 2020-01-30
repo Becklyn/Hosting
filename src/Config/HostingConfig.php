@@ -51,7 +51,7 @@ class HostingConfig
      */
     public function getTrackJsToken () : ?string
     {
-        return null !== $this->config["trackjs"]
+        return !empty($this->config["trackjs"])
             ? (string) $this->config["trackjs"]
             : null;
     }

@@ -1,3 +1,9 @@
+3.0.1
+=====
+
+*   (bug) Improve handling of empty env vars for TrackJS token
+
+
 3.0.0
 =====
 
