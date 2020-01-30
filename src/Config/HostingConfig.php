@@ -29,6 +29,8 @@ class HostingConfig
     {
         $tier = $config["tier"];
 
+        // It's important to make this check as early as possible. This service is always constructed,
+        // so the exception should be thrown immediately. Otherwise one might miss it if it is checked lazily.
         if (!\in_array($config["tier"], self::ALLOWED_TIERS, true))
         {
             throw new InvalidTierException(\sprintf(
