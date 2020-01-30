@@ -34,7 +34,7 @@ class BecklynHostingBundle extends Bundle
         {
             $container->addCompilerPass(
                 new RegisterAssetNamespacesCompilerPass([
-                    "hosting" => __DIR__ . "/../src/Resources/public",
+                    "hosting" => __DIR__ . "/../build",
                 ])
             );
 
