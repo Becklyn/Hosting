@@ -7,9 +7,12 @@ Config
 ------
 
 
-* `tier`: the tier the app is currently deployed to. Normally something like `"production"`, `"staging"` or `"development"`.
-* `project_name`: the token used for uptime monitoring
-* `trackjs`: the token for the integration with TrackJS.
+*   `tier` (required): the tier the app is currently deployed to. Normally something like `"production"`, `"staging"` or `"development"`.
+*   `project` (required): the clear text name of the project
+*   `installation` (required): the key of this installation (used for tokens and uptime monitoring)
+    *   Should be unique per installation.
+    *   Should be a technical key (only `a-z 0-9 -_`).
+*   `trackjs`: the token for the integration with TrackJS.
 
 
 Getting the Hosting Config
