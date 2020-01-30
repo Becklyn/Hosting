@@ -2,21 +2,43 @@
 
 namespace Becklyn\Hosting\Config;
 
+use Becklyn\Hosting\Exception\InvalidTierException;
 use Becklyn\Hosting\Project\ProjectVersion;
 
 class HostingConfig
 {
+    public const ALLOWED_TIERS = [
+        "development",
+        "staging",
+        "production",
+    ];
+
     /** @var array */
     private $config;
 
     /** @var ProjectVersion */
     private $projectVersion;
 
+    /** @var string */
+    private $tier;
+
 
     /**
      */
     public function __construct (array $config, ProjectVersion $projectVersion)
     {
+        $tier = $config["tier"];
+
+        if (!\in_array($config["tier"], self::ALLOWED_TIERS, true))
+        {
+            throw new InvalidTierException(\sprintf(
+                "Invalid hosting tier '%s' configured. Only allowed values are: %s",
+                $tier,
+                \implode(", ", self::ALLOWED_TIERS)
+            ));
+        }
+
+        $this->tier = $tier;
         $this->config = $config;
         $this->projectVersion = $projectVersion;
     }
@@ -26,7 +48,7 @@ class HostingConfig
      */
     public function getDeploymentTier () : string
     {
-        return $this->config["tier"];
+        return $this->tier;
     }
 
 
@@ -34,7 +56,7 @@ class HostingConfig
      */
     public function isInDevelopmentTier () : bool
     {
-        return "development" === $this->config["tier"];
+        return "development" === $this->tier;
     }
 
 

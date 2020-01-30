@@ -2,6 +2,7 @@
 
 namespace Becklyn\Hosting\DependencyInjection;
 
+use Becklyn\Hosting\Config\HostingConfig;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -18,7 +19,7 @@ class BecklynHostingConfiguration implements ConfigurationInterface
             ->children()
                 ->enumNode("tier")
                     ->isRequired()
-                    ->values(["development", "staging", "production"])
+                    ->values(HostingConfig::ALLOWED_TIERS)
                     ->info("The deployment environment (or tier) where this app is installed. E.g. 'development', 'staging' or 'production'.")
                 ->end()
                 ->scalarNode("project")

@@ -1,3 +1,9 @@
+3.0.2
+=====
+
+*   (bug) Properly handle `tier` config with env vars.
+
+
 3.0.1
 =====
 
