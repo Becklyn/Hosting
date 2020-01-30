@@ -3,7 +3,7 @@
 namespace Becklyn\Hosting\DependencyInjection;
 
 use Becklyn\Hosting\Config\HostingConfig;
-use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
+use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Sentry\Options;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,13 +14,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BecklynHostingExtension extends Extension
 {
-    /** @var ReleaseVersionPass */
-    private $releaseVersionPass;
+    /** @var ConfigureSentryPass */
+    private $configureSentryPass;
 
 
-    public function __construct (ReleaseVersionPass $releaseVersionPass)
+    public function __construct (ConfigureSentryPass $releaseVersionPass)
     {
-        $this->releaseVersionPass = $releaseVersionPass;
+        $this->configureSentryPass = $releaseVersionPass;
     }
 
     /**
@@ -41,10 +41,7 @@ class BecklynHostingExtension extends Extension
             ->setArgument('$config', $config);
 
         // set release version here, as we need the project name
-        $this->releaseVersionPass->setProjectName($config["project_name"]);
-
-        $container->getDefinition(Options::class)
-            ->addMethodCall("setEnvironment", $config["tier"]);
+        $this->configureSentryPass->setConfig($config["installation_key"], $config["tier"]);
     }
 
 

@@ -54,7 +54,7 @@ class TrackJSEmbed
             $this->assetHelper->getUrl("@hosting/vendor/trackjs.js"),
             \json_encode([
                 "token" => $trackJsToken,
-                "application" => $this->hostingConfig->getProjectName(),
+                "application" => $this->hostingConfig->getProjectInstallationKey(),
                 "version" => $this->hostingConfig->getGitCommit(),
                 "console" => [
                     "display" => false,

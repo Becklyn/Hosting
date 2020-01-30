@@ -63,7 +63,7 @@ class HostingConfig
     {
         return \sprintf(
             '<!-- uptime monitor: %s -->',
-            \htmlspecialchars($this->config["project_name"], \ENT_QUOTES)
+            \htmlspecialchars($this->getProjectInstallationKey(), \ENT_QUOTES)
         );
     }
 
@@ -73,5 +73,13 @@ class HostingConfig
     public function getProjectName () : string
     {
         return $this->config["project_name"];
+    }
+
+
+    /**
+     */
+    public function getProjectInstallationKey () : string
+    {
+        return $this->config["installation_key"];
     }
 }

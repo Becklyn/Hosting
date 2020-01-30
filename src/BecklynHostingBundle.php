@@ -4,14 +4,14 @@ namespace Becklyn\Hosting;
 
 use Becklyn\AssetsBundle\Namespaces\RegisterAssetNamespacesCompilerPass;
 use Becklyn\Hosting\DependencyInjection\BecklynHostingExtension;
-use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
+use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class BecklynHostingBundle extends Bundle
 {
     /**
-     * @var ReleaseVersionPass
+     * @var ConfigureSentryPass
      */
     private $releaseVersionPass;
 
@@ -21,7 +21,7 @@ class BecklynHostingBundle extends Bundle
      */
     public function __construct ()
     {
-        $this->releaseVersionPass = new ReleaseVersionPass();
+        $this->releaseVersionPass = new ConfigureSentryPass();
     }
 
 

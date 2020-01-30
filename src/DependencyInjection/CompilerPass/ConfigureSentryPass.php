@@ -7,17 +7,21 @@ use Sentry\Options;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class ReleaseVersionPass implements CompilerPassInterface
+class ConfigureSentryPass implements CompilerPassInterface
 {
     /** @var string */
-    private $projectName;
+    private $projectInstallationKey;
+
+    /** @var string */
+    private $tier;
 
 
     /**
      */
-    public function setProjectName (string $projectName) : void
+    public function setConfig (string $projectInstallationKey, string $tier) : void
     {
-        $this->projectName = $projectName;
+        $this->projectInstallationKey = $projectInstallationKey;
+        $this->tier = $tier;
     }
 
 
@@ -36,6 +40,7 @@ class ReleaseVersionPass implements CompilerPassInterface
         $version = $git->fetchHeadCommitHash() ?? "?";
 
         $container->getDefinition(Options::class)
-            ->addMethodCall("setRelease", ["{$this->projectName}@{$version}"]);
+            ->addMethodCall("setEnvironment", [$this->tier])
+            ->addMethodCall("setRelease", ["{$this->projectInstallationKey}@{$version}"]);
     }
 }
