@@ -9,3 +9,4 @@ services:
 
     Becklyn\Hosting\:
         resource: '../src/*'
+        exclude: '../src/{DependencyInjection,BecklynHostingBundle.php}'
