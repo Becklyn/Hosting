@@ -72,7 +72,7 @@ class HostingConfig
      */
     public function getProjectName () : string
     {
-        return $this->config["project_name"];
+        return $this->config["project"];
     }
 
 
@@ -80,6 +80,6 @@ class HostingConfig
      */
     public function getProjectInstallationKey () : string
     {
-        return $this->config["installation_key"];
+        return $this->config["installation"];
     }
 }

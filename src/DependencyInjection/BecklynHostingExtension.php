@@ -41,7 +41,7 @@ class BecklynHostingExtension extends Extension
             ->setArgument('$config', $config);
 
         // set release version here, as we need the project name
-        $this->configureSentryPass->setConfig($config["installation_key"], $config["tier"]);
+        $this->configureSentryPass->setConfig($config["installation"], $config["tier"]);
     }
 
 
@@ -51,7 +51,7 @@ class BecklynHostingExtension extends Extension
     public function prepend (ContainerBuilder $container) : void
     {
         // add sane defaults for the sentry configuration
-        $container->prependExtensionConfig('sentry', [
+        $container->prependExtensionConfig("sentry", [
             "options" => [
                 "curl_method" => "async",
                 "project_root" => $container->getParameter("kernel.project_dir"),

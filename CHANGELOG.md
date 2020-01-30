@@ -4,7 +4,7 @@
 *   (bug) Properly support Symfony 5.
 *   (improvement) Bump required packages.
 *   (internal) Bump sentry packages.
-*   (feature) Add `project_name` + `installation_key`.
+*   (feature) Add `project` + `installation` config options.
 
 
 2.2.2
