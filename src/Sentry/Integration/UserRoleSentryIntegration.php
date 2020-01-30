@@ -13,7 +13,6 @@ class UserRoleSentryIntegration implements IntegrationInterface
     /** @var Security */
     private $security;
 
-
     /**
      */
     public function __construct (Security $security)
