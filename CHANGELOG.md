@@ -1,7 +1,7 @@
 3.0.0
 =====
 
-*   (bc) Require Symfony 5 and update config.
+*   (bc) Require Symfony 5 and change required config.
 *   (bug) Properly support Symfony 5.
 *   (improvement) Bump required packages.
 *   (internal) Bump sentry packages.
