@@ -4,6 +4,7 @@ namespace Becklyn\Hosting\DependencyInjection;
 
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
+use Becklyn\Hosting\Sentry\Integration\UserRoleSentryIntegration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -64,6 +65,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
             "options" => [
                 "integrations" => [
                     "@becklyn_hosting_ignored_errors",
+                    "@" . UserRoleSentryIntegration::class,
                 ],
                 "in_app_exclude" => [
                     '%kernel.cache_dir%',
