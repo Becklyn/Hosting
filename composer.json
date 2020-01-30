@@ -18,36 +18,32 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "ext-json": "*",
-        "sentry/sentry-symfony": "^2.1",
-        "symfony/cache": "^3.4 || ^4.0 || 5.0",
-        "symfony/config": "^3.4 || ^4.0 || 5.0",
-        "symfony/dependency-injection": "^3.4 || ^4.0 || 5.0",
-        "symfony/http-kernel": "^3.4 || ^4.0 || 5.0"
+        "becklyn/assets-bundle": "^2.3",
+        "sentry/sentry-symfony": "^3.4",
+        "symfony/cache-contracts": "^2.0",
+        "symfony/config": "^5.0",
+        "symfony/dependency-injection": "^5.0",
+        "symfony/http-kernel": "^5.0",
+        "symfony/process": "^5.0"
     },
     "require-dev": {
-        "becklyn/assets-bundle": "^2.3",
-        "becklyn/php-cs": "^2.0.1",
-        "symfony/phpunit-bridge": "^4.3.8",
-        "twig/twig": "^2.0"
-    },
-    "suggest": {
-        "becklyn/assets-bundle": "For embedding the frontend monitoring using Becklyn's asset() twig function.",
-        "symfony/assets": "For embedding the frontend monitoring using Symfony's asset() twig function."
+        "symfony/phpunit-bridge": "^5.0",
+        "twig/twig": "^2.0 || ^3.0"
     },
     "config": {
         "sort-packages": true
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev",
+            "dev-next": "3.x-dev"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Becklyn\\Hosting\\": "src/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.x-dev",
-            "dev-next": "2.x-dev"
         }
     }
 }

@@ -3,26 +3,26 @@
 namespace Becklyn\Hosting\DependencyInjection;
 
 use Becklyn\Hosting\Config\HostingConfig;
-use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
-use Becklyn\Hosting\Sentry\CustomSanitizeDataProcessor;
+use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
+use Becklyn\Hosting\Sentry\Integration\UserRoleSentryIntegration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class BecklynHostingExtension extends Extension
+class BecklynHostingExtension extends Extension implements PrependExtensionInterface
 {
-    /**
-     * @var ReleaseVersionPass
-     */
-    private $releaseVersionPass;
+    /** @var ConfigureSentryPass */
+    private $configureSentryPass;
 
 
-    public function __construct (ReleaseVersionPass $releaseVersionPass)
+    public function __construct (ConfigureSentryPass $releaseVersionPass)
     {
-        $this->releaseVersionPass = $releaseVersionPass;
+        $this->configureSentryPass = $releaseVersionPass;
     }
 
     /**
@@ -33,7 +33,7 @@ class BecklynHostingExtension extends Extension
         // load services
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__ . "/../Resources/config")
+            new FileLocator(__DIR__ . "/../../config")
         );
         $loader->load("services.yaml");
 
@@ -43,7 +43,16 @@ class BecklynHostingExtension extends Extension
             ->setArgument('$config', $config);
 
         // set release version here, as we need the project name
-        $this->releaseVersionPass->setProjectName($config["project_name"]);
+        $this->configureSentryPass->setConfig($config["installation"], $config["tier"]);
+
+        $container->getDefinition("becklyn_hosting_ignored_errors")
+            ->setArgument(0, [
+                "ignore_exceptions" => [
+                    AccessDeniedHttpException::class,
+                    AccessDeniedException::class,
+                    NotFoundHttpException::class,
+                ],
+            ]);
     }
 
 
@@ -52,18 +61,19 @@ class BecklynHostingExtension extends Extension
      */
     public function prepend (ContainerBuilder $container) : void
     {
-        // add sane defaults for the sentry configuration
-        $container->prependExtensionConfig('sentry', [
+        $container->prependExtensionConfig("sentry", [
             "options" => [
-                "curl_method" => "async",
-                "processors" => [
-                    \Raven_Processor_SanitizeDataProcessor::class,
-                    CustomSanitizeDataProcessor::class,
+                "integrations" => [
+                    "@becklyn_hosting_ignored_errors",
+                    "@" . UserRoleSentryIntegration::class,
                 ],
-            ],
-            "skip_capture" => [
-                AccessDeniedHttpException::class,
-                NotFoundHttpException::class,
+                "in_app_exclude" => [
+                    '%kernel.cache_dir%',
+                    '%kernel.project_dir%/vendor',
+                    '%kernel.project_dir%/vendor-bin',
+                ],
+                "project_root" => '%kernel.project_dir%',
+                "send_default_pii" => false,
             ],
         ]);
     }

@@ -6,15 +6,10 @@ use Becklyn\Hosting\Project\ProjectVersion;
 
 class HostingConfig
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $config;
 
-
-    /**
-     * @var ProjectVersion
-     */
+    /** @var ProjectVersion */
     private $projectVersion;
 
 
@@ -68,7 +63,7 @@ class HostingConfig
     {
         return \sprintf(
             '<!-- uptime monitor: %s -->',
-            \htmlspecialchars($this->config["project_name"], \ENT_QUOTES)
+            \htmlspecialchars($this->getProjectInstallationKey(), \ENT_QUOTES)
         );
     }
 
@@ -77,6 +72,14 @@ class HostingConfig
      */
     public function getProjectName () : string
     {
-        return $this->config["project_name"];
+        return $this->config["project"];
+    }
+
+
+    /**
+     */
+    public function getProjectInstallationKey () : string
+    {
+        return $this->config["installation"];
     }
 }

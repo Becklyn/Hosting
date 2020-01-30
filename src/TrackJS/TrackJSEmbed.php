@@ -4,50 +4,33 @@ namespace Becklyn\Hosting\TrackJS;
 
 use Becklyn\AssetsBundle\Helper\AssetHelper;
 use Becklyn\Hosting\Config\HostingConfig;
-use Becklyn\Hosting\Exception\AssetIntegrationFailedException;
-use Symfony\Component\Asset\Packages;
 
 class TrackJSEmbed
 {
-    /**
-     * @var HostingConfig
-     */
+    /** @var HostingConfig */
     private $hostingConfig;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $environment;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $isDebug;
 
-    /**
-     * @var AssetHelper|null
-     */
+    /** @var AssetHelper */
     private $assetHelper;
-
-    /**
-     * @var Packages|null
-     */
-    private $packages;
 
 
     /**
      */
     public function __construct (
         HostingConfig $hostingConfig,
-        ?AssetHelper $assetHelper,
-        ?Packages $packages,
+        AssetHelper $assetHelper,
         string $environment,
         string $isDebug
     )
     {
         $this->hostingConfig = $hostingConfig;
         $this->assetHelper = $assetHelper;
-        $this->packages = $packages;
         $this->environment = $environment;
         $this->isDebug = $isDebug;
     }
@@ -58,11 +41,6 @@ class TrackJSEmbed
      */
     public function getEmbedHtml () : string
     {
-        if (null === $this->assetHelper && null === $this->packages)
-        {
-            throw new AssetIntegrationFailedException("No asset integration extension found. Please either install `becklyn/assets-bundle` or `symfony/asset` to use this bundle.");
-        }
-
         $trackJsToken = $this->hostingConfig->getTrackJsToken();
 
         // only embed if token is set, in production and not in debug
@@ -71,22 +49,17 @@ class TrackJSEmbed
             return "";
         }
 
-        $assetUrl = null !== $this->assetHelper
-            ? $this->assetHelper->getUrl("@hosting/js/trackjs.js")
-            : $this->packages->getUrl("bundles/becklynhosting/js/trackjs.js");
-
         return \sprintf(
             '<script src="%s"></script><script>window.TrackJS && TrackJS.install(%s)</script>',
-            $assetUrl,
+            $this->assetHelper->getUrl("@hosting/vendor/trackjs.js"),
             \json_encode([
                 "token" => $trackJsToken,
-                "application" => $this->hostingConfig->getProjectName(),
+                "application" => $this->hostingConfig->getProjectInstallationKey(),
                 "version" => $this->hostingConfig->getGitCommit(),
                 "console" => [
                     "display" => false,
                 ],
             ])
         );
-
     }
 }

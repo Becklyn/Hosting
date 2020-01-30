@@ -1,3 +1,13 @@
+3.0.0
+=====
+
+*   (bc) Require Symfony 5 and update config.
+*   (bug) Properly support Symfony 5.
+*   (improvement) Bump required packages.
+*   (internal) Bump sentry packages.
+*   (feature) Add `project` + `installation` config options.
+
+
 2.2.2
 =====
 

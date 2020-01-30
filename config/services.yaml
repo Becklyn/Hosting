@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $projectDir: '%kernel.project_dir%'
+            $environment: '%kernel.environment%'
+            $isDebug: '%kernel.debug%'
+
+    Becklyn\Hosting\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,BecklynHostingBundle.php}'
+
+    becklyn_hosting_ignored_errors:
+        class: Sentry\Integration\IgnoreErrorsIntegration
+

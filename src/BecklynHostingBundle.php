@@ -4,14 +4,14 @@ namespace Becklyn\Hosting;
 
 use Becklyn\AssetsBundle\Namespaces\RegisterAssetNamespacesCompilerPass;
 use Becklyn\Hosting\DependencyInjection\BecklynHostingExtension;
-use Becklyn\Hosting\DependencyInjection\CompilerPass\ReleaseVersionPass;
+use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class BecklynHostingBundle extends Bundle
 {
     /**
-     * @var ReleaseVersionPass
+     * @var ConfigureSentryPass
      */
     private $releaseVersionPass;
 
@@ -21,7 +21,7 @@ class BecklynHostingBundle extends Bundle
      */
     public function __construct ()
     {
-        $this->releaseVersionPass = new ReleaseVersionPass();
+        $this->releaseVersionPass = new ConfigureSentryPass();
     }
 
 
@@ -30,15 +30,11 @@ class BecklynHostingBundle extends Bundle
      */
     public function build (ContainerBuilder $container) : void
     {
-        if (\class_exists(RegisterAssetNamespacesCompilerPass::class))
-        {
-            $container->addCompilerPass(
-                new RegisterAssetNamespacesCompilerPass([
-                    "hosting" => __DIR__ . "/../src/Resources/public",
-                ])
-            );
-
-        }
+        $container->addCompilerPass(
+            new RegisterAssetNamespacesCompilerPass([
+                "hosting" => __DIR__ . "/../build",
+            ])
+        );
 
         $container->addCompilerPass($this->releaseVersionPass);
     }
@@ -50,5 +46,14 @@ class BecklynHostingBundle extends Bundle
     public function getContainerExtension ()
     {
         return new BecklynHostingExtension($this->releaseVersionPass);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getPath ()
+    {
+        return \dirname(__DIR__);
     }
 }
