@@ -1,3 +1,9 @@
+2.2.3
+=====
+
+*   (bug) Remove symfony 5 from the dependencies since the new config of the updated bundles includes breaking changes.
+
+
 2.2.2
 =====
 
