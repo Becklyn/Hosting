@@ -1,3 +1,9 @@
+3.0.4
+=====
+
+*   (improvement) Don't use deprecated options.
+
+
 3.0.3
 =====
 
