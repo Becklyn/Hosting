@@ -68,11 +68,16 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                     "@" . UserRoleSentryIntegration::class,
                 ],
                 "in_app_exclude" => [
-                    '%kernel.cache_dir%',
-                    '%kernel.project_dir%/vendor',
-                    '%kernel.project_dir%/vendor-bin',
+                    "%kernel.cache_dir%",
+                    "%kernel.project_dir%/vendor",
+                    "%kernel.project_dir%/vendor-bin",
                 ],
-                "project_root" => '%kernel.project_dir%',
+                "in_app_include" => [
+                    "%kernel.project_dir%/config",
+                    "%kernel.project_dir%/src",
+                    "%kernel.project_dir%/templates",
+                    "%kernel.project_dir%/tests",
+                ],
                 "send_default_pii" => false,
             ],
         ]);
