@@ -1,3 +1,10 @@
+2.2.4
+=====
+
+*   (bug) Explicitly wire sentry client. The actual client is a subclass of `Raven_Client` and is therefor
+    not picked up by autowiring.
+
+
 2.2.3
 =====
 
