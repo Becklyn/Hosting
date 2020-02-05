@@ -17,3 +17,8 @@ services:
         $packages: '@?Symfony\Component\Asset\Packages'
         $environment: '%kernel.environment%'
         $isDebug: '%kernel.debug%'
+
+    # Explicitly wire the client, as the actual client is a subclass of the Raven_Client and is therefor
+    # not picked up by autowiring.
+    Becklyn\Hosting\Sentry\CustomSanitizeDataProcessor:
+        $client: '@sentry.client'
