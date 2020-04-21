@@ -5,8 +5,6 @@ namespace Becklyn\Hosting\Listener;
 use Sentry\SentryBundle\EventListener\RequestListener;
 use Sentry\SentryBundle\EventListener\RequestListenerControllerEvent;
 use Sentry\SentryBundle\EventListener\RequestListenerRequestEvent;
-use Sentry\SentrySdk;
-use Sentry\State\Scope;
 
 final class SentryRequestListener
 {
@@ -27,24 +25,7 @@ final class SentryRequestListener
      */
     public function onKernelRequest (RequestListenerRequestEvent $event) : void
     {
-        if (!$event->isMasterRequest())
-        {
-            return;
-        }
 
-        $currentClient = SentrySdk::getCurrentHub()->getClient();
-
-        if (null === $currentClient || !$currentClient->getOptions()->shouldSendDefaultPii())
-        {
-            return;
-        }
-
-        $userData = [];
-        $userData['ip_address'] = $event->getRequest()->getClientIp();
-
-        SentrySdk::getCurrentHub()->configureScope(function (Scope $scope) use ($userData) : void {
-             $scope->setUser($userData, true);
-        });
     }
 
 
