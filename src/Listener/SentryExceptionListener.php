@@ -25,7 +25,7 @@ final class SentryExceptionListener implements SentryExceptionListenerInterface
 
 
     /**
-     * @inheritDoc
+     * We do not want to log any user details. Therefore this method is empty.
      */
     public function onKernelRequest (GetResponseEvent $event) : void
     {
