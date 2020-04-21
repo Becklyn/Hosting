@@ -9,7 +9,7 @@ parameters:
         - vendor
 
     ignoreErrors:
+        - '#Becklyn\\Hosting\\Listener\\SentryExceptionListener::onConsoleException#'
+        - '#Symfony\\Component\\Asset\\Packages#'
         - '#Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::#'
         - '#Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface::#'
-        - '#Symfony\\Component\\Asset\\Packages#'
-        - '#Becklyn\\Hosting\\Listener\\SentryExceptionListener::onConsoleException#'
