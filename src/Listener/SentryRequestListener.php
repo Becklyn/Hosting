@@ -21,7 +21,7 @@ final class SentryRequestListener
 
 
     /**
-     * Set the username from the security context by listening on core.request
+     * We do not want to log any user details. Therefore this method is empty.
      */
     public function onKernelRequest (RequestListenerRequestEvent $event) : void
     {
