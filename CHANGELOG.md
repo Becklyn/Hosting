@@ -1,3 +1,9 @@
+3.0.5
+=====
+
+*   (internal) Don't log the current user in sentry. This improves the performance as it does not longer access the `session` in every request.
+
+
 3.0.4
 =====
 
