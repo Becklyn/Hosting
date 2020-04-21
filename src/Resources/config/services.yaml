@@ -22,3 +22,8 @@ services:
     # not picked up by autowiring.
     Becklyn\Hosting\Sentry\CustomSanitizeDataProcessor:
         $client: '@sentry.client'
+
+    Becklyn\Hosting\Listener\SentryExceptionListener:
+        decorates: 'sentry.exception_listener'
+        arguments:
+            $inner: '@Becklyn\Hosting\Listener\SentryExceptionListener.inner'

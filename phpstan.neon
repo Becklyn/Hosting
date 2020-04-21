@@ -12,3 +12,4 @@ parameters:
         - '#Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::#'
         - '#Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface::#'
         - '#Symfony\\Component\\Asset\\Packages#'
+        - '#Becklyn\\Hosting\\Listener\\SentryExceptionListener::onConsoleException#'
