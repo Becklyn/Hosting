@@ -14,3 +14,7 @@ services:
     becklyn_hosting_ignored_errors:
         class: Sentry\Integration\IgnoreErrorsIntegration
 
+    Becklyn\Hosting\Listener\SentryRequestListener:
+        decorates: 'Sentry\SentryBundle\EventListener\RequestListener'
+        arguments:
+            $inner: '@Becklyn\Hosting\Listener\SentryRequestListener.inner'
