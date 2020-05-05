@@ -38,6 +38,18 @@
 *   (feature) Add `project` + `installation` config options.
 
 
+2.3.0
+=====
+
+*   (feature) Add Twig function `hosting_embed_html_meta()`
+
+
+2.2.5
+=====
+
+*   (improvement) Don't log the current user in sentry. This improves the performance as it does not longer access the `session` in every request.
+
+
 2.2.4
 =====
 
