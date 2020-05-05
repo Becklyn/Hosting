@@ -1,3 +1,9 @@
+2.3.0
+=====
+
+*   (feature) Add Twig function `hosting_embed_html_meta()`
+
+
 2.2.5
 =====
 
