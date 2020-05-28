@@ -50,6 +50,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                 "ignore_exceptions" => [
                     AccessDeniedHttpException::class,
                     AccessDeniedException::class,
+                    'Mayd\\Foundation\\Exception\\Request\\RequestMatchException',
                     NotFoundHttpException::class,
                 ],
             ]);

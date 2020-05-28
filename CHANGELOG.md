@@ -1,3 +1,9 @@
+3.1.1
+=====
+
+*   (improvement) Also ignore Mayd's `RequestMatchException`.
+
+
 3.1.0
 =====
 
