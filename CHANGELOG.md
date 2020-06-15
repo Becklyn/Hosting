@@ -1,3 +1,9 @@
+3.1.2
+=====
+
+*   (improvement) Also ignore symfony console's `CommandNotFoundException`.
+
+
 3.1.1
 =====
 

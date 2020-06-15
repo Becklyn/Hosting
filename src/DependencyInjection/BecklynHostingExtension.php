@@ -6,6 +6,7 @@ use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Becklyn\Hosting\Sentry\Integration\UserRoleSentryIntegration;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -50,6 +51,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                 "ignore_exceptions" => [
                     AccessDeniedHttpException::class,
                     AccessDeniedException::class,
+                    CommandNotFoundException::class,
                     'Mayd\\Foundation\\Exception\\Request\\RequestMatchException',
                     NotFoundHttpException::class,
                 ],
