@@ -1,3 +1,9 @@
+3.1.3
+=====
+
+*   (improvement) Also ignore Doctrine Migration's `NoMigrationsToExecute`.
+
+
 3.1.2
 =====
 
