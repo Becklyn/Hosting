@@ -54,6 +54,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                     CommandNotFoundException::class,
                     'Mayd\\Foundation\\Exception\\Request\\RequestMatchException',
                     NotFoundHttpException::class,
+                    'Doctrine\\Migrations\\Exception\\NoMigrationsToExecute',
                 ],
             ]);
     }
