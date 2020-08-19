@@ -4,6 +4,7 @@
 *   (improvement) Also ignore Mayd's `InternalRedirectException`.
 
 
+3.1.3
 =====
 
 *   (improvement) Also ignore Doctrine Migration's `NoMigrationsToExecute`.
