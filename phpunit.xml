@@ -15,7 +15,7 @@
     </php>
 
     <logging>
-        <log type="coverage-php" target="build/logs/coverage.cov"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 
     <testsuites>

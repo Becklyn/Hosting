@@ -1,6 +1,8 @@
 Hosting Bundle
 ==============
 
+[![Coverage Status](https://coveralls.io/repos/github/Becklyn/Hosting/badge.svg?branch=3.x)](https://coveralls.io/github/Becklyn/Hosting?branch=3.x)
+
 Eases the integration with several hosting-related topics.
 
 Config
