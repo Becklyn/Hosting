@@ -3,7 +3,6 @@
 namespace Becklyn\Hosting\DependencyInjection\CompilerPass;
 
 use Becklyn\Hosting\Git\GitIntegration;
-use Sentry\Options;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -28,7 +27,7 @@ class ConfigureSentryPass implements CompilerPassInterface
         $git = new GitIntegration($container->getParameter("kernel.project_dir"));
         $version = $git->fetchHeadCommitHash() ?? "?";
 
-        $container->getDefinition(Options::class)
+        $container->getDefinition("sentry.client.options")
             ->addMethodCall("setEnvironment", [$this->tier])
             ->addMethodCall("setRelease", ["{$this->projectInstallationKey}@{$version}"]);
     }

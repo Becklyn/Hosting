@@ -69,8 +69,8 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
         $container->prependExtensionConfig("sentry", [
             "options" => [
                 "integrations" => [
-                    "@becklyn_hosting_ignored_errors",
-                    "@" . UserRoleSentryIntegration::class,
+                    "becklyn_hosting_ignored_errors",
+                    UserRoleSentryIntegration::class,
                 ],
                 "in_app_exclude" => [
                     "%kernel.cache_dir%",
@@ -84,6 +84,12 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                     "%kernel.project_dir%/tests",
                 ],
                 "send_default_pii" => false,
+            ],
+        ]);
+
+        $container->prependExtensionConfig("sensio_framework_extra", [
+            "psr_message" => [
+                "enabled" => false,
             ],
         ]);
     }
