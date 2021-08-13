@@ -7,37 +7,27 @@ use Becklyn\Hosting\Config\HostingConfig;
 
 class TrackJSEmbed
 {
-    /** @var HostingConfig */
-    private $hostingConfig;
-
-    /** @var string */
-    private $environment;
-
-    /** @var string */
-    private $isDebug;
-
-    /** @var AssetHelper */
-    private $assetHelper;
+    private HostingConfig $hostingConfig;
+    private bool $isDebug;
+    private ?AssetHelper $assetHelper;
 
 
-    /**
-     */
     public function __construct (
         HostingConfig $hostingConfig,
-        AssetHelper $assetHelper,
-        string $environment,
-        string $isDebug
+        ?AssetHelper $assetHelper,
+        bool $isDebug
     )
     {
         $this->hostingConfig = $hostingConfig;
         $this->assetHelper = $assetHelper;
-        $this->environment = $environment;
         $this->isDebug = $isDebug;
     }
 
 
     /**
      * Returns the embed HTML for TrackJS.
+     *
+     * @throws \JsonException
      */
     public function getEmbedHtml () : string
     {
@@ -59,7 +49,7 @@ class TrackJSEmbed
                 "console" => [
                     "display" => false,
                 ],
-            ])
+            ], \JSON_THROW_ON_ERROR)
         );
     }
 }
