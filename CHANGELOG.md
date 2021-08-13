@@ -5,6 +5,7 @@
 *   (improvement) Upgrade Sentry SDK to the newest version.
 *   (internal) Upgrade `becklyn/php-cs` to the newest versions.
 *   (internal) Move CI over to CircleCI.
+*   (internal) Add tests, courtesy of @apfelbox and @mangoischke.
 
 
 3.1.4
