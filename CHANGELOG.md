@@ -1,3 +1,12 @@
+3.2.0
+=====
+
+*   (improvement) Bump minimum required version of PHP to 7.4 and add support for 8.0+.
+*   (improvement) Upgrade Sentry SDK to the newest version.
+*   (internal) Upgrade `becklyn/php-cs` to the newest versions.
+*   (internal) Move CI over to CircleCI.
+
+
 3.1.4
 =====
 

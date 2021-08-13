@@ -10,15 +10,14 @@ use Symfony\Component\Security\Core\Security;
 
 class UserRoleSentryIntegration implements IntegrationInterface
 {
-    /** @var Security */
-    private $security;
+    private Security $security;
 
-    /**
-     */
+
     public function __construct (Security $security)
     {
         $this->security = $security;
     }
+
 
     /**
      * @inheritDoc
@@ -35,7 +34,10 @@ class UserRoleSentryIntegration implements IntegrationInterface
 
                         if (null !== $user)
                         {
-                            $event->getExtraContext()->merge(['user_roles' => $user->getRoles()]);
+                            $extra = $event->getExtra();
+                            $extra["user_roles"] = $user->getRoles();
+
+                            $event->setExtra($extra);
                         }
 
                         return $event;

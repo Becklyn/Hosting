@@ -1,5 +1,6 @@
 {
     "require": {
-        "becklyn/php-cs": "^5.0"
+        "becklyn/php-cs": ">=13",
+        "php-coveralls/php-coveralls": "^2.4"
     }
 }

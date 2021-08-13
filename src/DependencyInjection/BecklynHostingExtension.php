@@ -17,14 +17,14 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class BecklynHostingExtension extends Extension implements PrependExtensionInterface
 {
-    /** @var ConfigureSentryPass */
-    private $configureSentryPass;
+    private ConfigureSentryPass $configureSentryPass;
 
 
     public function __construct (ConfigureSentryPass $releaseVersionPass)
     {
         $this->configureSentryPass = $releaseVersionPass;
     }
+
 
     /**
      * @inheritdoc

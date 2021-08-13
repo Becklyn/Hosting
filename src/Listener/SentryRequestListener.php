@@ -8,10 +8,7 @@ use Sentry\SentryBundle\EventListener\RequestListenerRequestEvent;
 
 final class SentryRequestListener
 {
-    /**
-     * @var RequestListener
-     */
-    private $inner;
+    private RequestListener $inner;
 
 
     public function __construct (RequestListener $inner)
@@ -21,9 +18,9 @@ final class SentryRequestListener
 
 
     /**
-     * We do not want to log any user details. Therefore this method is empty.
+     * We do not want to log any user details. Therefore, this method is empty.
      */
-    public function onKernelRequest (RequestListenerRequestEvent $event) : void
+    public function handleKernelRequestEvent (RequestListenerRequestEvent $event) : void
     {
 
     }
@@ -31,8 +28,8 @@ final class SentryRequestListener
 
     /**
      */
-    public function onKernelController (RequestListenerControllerEvent $event) : void
+    public function handleKernelControllerEvent (RequestListenerControllerEvent $event) : void
     {
-        $this->inner->onKernelController($event);
+        $this->inner->handleKernelControllerEvent($event);
     }
 }

@@ -10,7 +10,7 @@ use Symfony\Contracts\Cache\CacheInterface;
  */
 class ProjectVersion
 {
-    const CACHE_KEY = "becklyn.hosting.version";
+    public const CACHE_KEY = "becklyn.hosting.version";
 
     /** @var string|null */
     private $version;

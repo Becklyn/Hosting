@@ -10,15 +10,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class BecklynHostingBundle extends Bundle
 {
-    /**
-     * @var ConfigureSentryPass
-     */
-    private $releaseVersionPass;
+    private ConfigureSentryPass $releaseVersionPass;
 
 
-    /**
-     *
-     */
     public function __construct ()
     {
         $this->releaseVersionPass = new ConfigureSentryPass();
@@ -52,7 +46,7 @@ class BecklynHostingBundle extends Bundle
     /**
      * @inheritDoc
      */
-    public function getPath ()
+    public function getPath () : string
     {
         return \dirname(__DIR__);
     }
