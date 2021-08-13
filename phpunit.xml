@@ -14,6 +14,10 @@
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[direct]=0"/>
     </php>
 
+    <logging>
+        <log type="coverage-php" target="build/logs/coverage.cov"/>
+    </logging>
+
     <testsuites>
         <testsuite name="Bundle tests">
             <directory>tests</directory>

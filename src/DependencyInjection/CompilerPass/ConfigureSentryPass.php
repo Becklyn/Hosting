@@ -9,15 +9,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ConfigureSentryPass implements CompilerPassInterface
 {
-    /** @var string */
-    private $projectInstallationKey;
-
-    /** @var string */
-    private $tier;
+    private ?string $projectInstallationKey = null;
+    private ?string $tier = null;
 
 
-    /**
-     */
     public function setConfig (string $projectInstallationKey, string $tier) : void
     {
         $this->projectInstallationKey = $projectInstallationKey;
@@ -30,7 +25,7 @@ class ConfigureSentryPass implements CompilerPassInterface
      */
     public function process (ContainerBuilder $container) : void
     {
-        $git = new GitIntegration($container->getParameter('kernel.project_dir'));
+        $git = new GitIntegration($container->getParameter("kernel.project_dir"));
         $version = $git->fetchHeadCommitHash() ?? "?";
 
         $container->getDefinition(Options::class)
