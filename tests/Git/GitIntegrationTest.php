@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace Tests\Becklyn\Hosting\Git;
+
 use Becklyn\Hosting\Git\GitIntegration;
 use PHPUnit\Framework\TestCase;
 

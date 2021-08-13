@@ -1,6 +1,7 @@
 {
     "require": {
         "becklyn/php-cs": ">=13",
-        "php-coveralls/php-coveralls": "^2.4"
+        "php-coveralls/php-coveralls": "^2.4",
+        "phpunit/phpcov": "^8.2"
     }
 }

@@ -5,3 +5,4 @@
 /vendor-bin/test/vendor
 /.php-cs-fixer.cache
 /.phpunit.result.cache
+/build/logs

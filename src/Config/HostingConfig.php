@@ -13,18 +13,11 @@ class HostingConfig
         "production",
     ];
 
-    /** @var array */
-    private $config;
-
-    /** @var ProjectVersion */
-    private $projectVersion;
-
-    /** @var string */
-    private $tier;
+    private array $config;
+    private ProjectVersion $projectVersion;
+    private string $tier;
 
 
-    /**
-     */
     public function __construct (array $config, ProjectVersion $projectVersion)
     {
         $tier = $config["tier"];
@@ -46,24 +39,18 @@ class HostingConfig
     }
 
 
-    /**
-     */
     public function getDeploymentTier () : string
     {
         return $this->tier;
     }
 
 
-    /**
-     */
     public function isInDevelopmentTier () : bool
     {
         return "development" === $this->tier;
     }
 
 
-    /**
-     */
     public function getGitCommit () : ?string
     {
         return $this->projectVersion->getVersion();
@@ -81,8 +68,6 @@ class HostingConfig
     }
 
 
-    /**
-     */
     public function getUptimeMonitorHtmlString () : string
     {
         return \sprintf(
@@ -92,16 +77,12 @@ class HostingConfig
     }
 
 
-    /**
-     */
     public function getProjectName () : string
     {
         return $this->config["project"];
     }
 
 
-    /**
-     */
     public function getProjectInstallationKey () : string
     {
         return $this->config["installation"];

@@ -46,17 +46,15 @@ jobs:
                   command: ./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/becklyn/php-cs/.php_cs.dist.php --dry-run --no-interaction
             - run:
                   name: PHPUnit
-                  command: ./vendor/bin/simple-phpunit -c phpunit.xml --colors=always --coverage-clover build/logs/clover.xml --testdox
+                  command: ./vendor/bin/simple-phpunit -c phpunit.xml --colors=always --testdox
             # phpstan (needs to run after simple-phpunit, as it needs the installed phpunit)
             - run:
                   name: PhpStan
                   command: ./vendor/bin/phpstan analyse --memory-limit 4G --ansi -c vendor-bin/test/vendor/becklyn/php-cs/phpstan/lib.neon src --no-interaction --no-progress
             # php-coveralls (needs to run after simple-phpunit, as it needs the generated coverage-clover in build/logs/clover.xml)
-            - run:
-                  name: php-coveralls
-                  # Use `|| true` to allow this step to fail as long as we don't have any tests
-                  shell: /bin/bash
-                  command: ./vendor/bin/php-coveralls
+#            - run:
+#                  name: php-coveralls
+#                  command: ./vendor/bin/php-coveralls
 
             # save cache at the end, to also store PHPUnit
             - save_cache:

@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace Tests\Becklyn\Hosting\Config;
+
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\Project\ProjectVersion;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -21,14 +23,15 @@ class HostingConfigTest extends TestCase
             [
                 "tier" => "development",
                 "trackjs" => "thisIsAToken",
-                "project_name" => "test",
+                "project" => "test",
+                "installation" => "some-server",
             ],
             $projectVersion
         );
 
         self::assertSame("development", $hostingConfig->getDeploymentTier());
         self::assertSame("thisIsAToken", $hostingConfig->getTrackJsToken());
-        self::assertSame("<!-- uptime monitor: test -->", $hostingConfig->getUptimeMonitorHtmlString());
+        self::assertSame("<!-- uptime monitor: some-server -->", $hostingConfig->getUptimeMonitorHtmlString());
         self::assertSame("test", $hostingConfig->getProjectName());
         self::assertSame("28fdd5c571ee58bba85ed2a0e1498e1d", $hostingConfig->getGitCommit());
         self::assertTrue($hostingConfig->isInDevelopmentTier());
@@ -37,7 +40,8 @@ class HostingConfigTest extends TestCase
             [
                 "tier" => "production",
                 "trackjs" => null,
-                "project_name" => "test",
+                "project" => "test",
+                "installation" => "some-server",
             ],
             $projectVersion
         );

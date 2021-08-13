@@ -1,34 +1,15 @@
 <?php declare(strict_types=1);
 
+namespace Tests\Becklyn\Hosting\TrackJS;
+
 use Becklyn\AssetsBundle\Helper\AssetHelper;
 use Becklyn\Hosting\Config\HostingConfig;
-use Becklyn\Hosting\Exception\AssetIntegrationFailedException;
 use Becklyn\Hosting\TrackJS\TrackJSEmbed;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Asset\Packages;
 
 class TrackJSEmbedTest extends TestCase
 {
-    public function testGetEmbedHtmlAssetsCheck () : void
-    {
-        /** @var MockObject|HostingConfig $hostingConfig */
-        $hostingConfig = $this->getMockBuilder(HostingConfig::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $trackJsEmbed = new TrackJSEmbed(
-            $hostingConfig,
-            null,
-            null,
-            false
-        );
-
-        $this->expectException(AssetIntegrationFailedException::class);
-
-        $trackJsEmbed->getEmbedHtml();
-    }
-
     public function testGetEmbedHtmlInDebugMode () : void
     {
         /** @var MockObject|AssetHelper $assetHelper */
@@ -53,7 +34,6 @@ class TrackJSEmbedTest extends TestCase
         $trackJsEmbedEmptyToken = new TrackJSEmbed(
             $hostingConfigEmptyToken,
             $assetHelper,
-            null,
             false
         );
 
@@ -77,7 +57,6 @@ class TrackJSEmbedTest extends TestCase
         $trackJsEmbedEmptyToken = new TrackJSEmbed(
             $hostingConfigEmptyToken,
             $assetHelper,
-            null,
             false
         );
 
@@ -100,7 +79,6 @@ class TrackJSEmbedTest extends TestCase
         $trackJsEmbedIsDebug = new TrackJSEmbed(
             $hostingConfigIsDebug,
             $assetHelper,
-            null,
             true
         );
 
@@ -124,7 +102,6 @@ class TrackJSEmbedTest extends TestCase
         $trackJsEmbedIsDebug = new TrackJSEmbed(
             $hostingConfigIsDebug,
             $assetHelper,
-            null,
             false
         );
 
