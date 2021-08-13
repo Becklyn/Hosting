@@ -4,7 +4,6 @@ services:
         autoconfigure: true
         bind:
             $projectDir: '%kernel.project_dir%'
-            $environment: '%kernel.environment%'
             $isDebug: '%kernel.debug%'
 
     Becklyn\Hosting\:
