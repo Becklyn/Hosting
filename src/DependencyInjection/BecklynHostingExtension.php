@@ -5,6 +5,7 @@ namespace Becklyn\Hosting\DependencyInjection;
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Becklyn\Hosting\Sentry\Integration\UserRoleSentryIntegration;
+use Sentry\Integration\IgnoreErrorsIntegration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -46,8 +47,8 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
         // set release version here, as we need the project name
         $this->configureSentryPass->setConfig($config["installation"], $config["tier"]);
 
-        $container->getDefinition("becklyn_hosting_ignored_errors")
-            ->setArgument(0, [
+        $container->getDefinition(IgnoreErrorsIntegration::class)
+            ->setArgument('$options', [
                 "ignore_exceptions" => [
                     AccessDeniedHttpException::class,
                     AccessDeniedException::class,
@@ -55,6 +56,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
                     'Mayd\\Foundation\\Exception\\Request\\RequestMatchException',
                     NotFoundHttpException::class,
                     'Doctrine\\Migrations\\Exception\\NoMigrationsToExecute',
+                    'Doctrine\\Migrations\\Generator\\Exception\\NoChangesDetected',
                     'Mayd\\Foundation\\Exception\\Internal\\InternalRedirectException',
                 ],
             ]);
@@ -69,7 +71,7 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
         $container->prependExtensionConfig("sentry", [
             "options" => [
                 "integrations" => [
-                    "becklyn_hosting_ignored_errors",
+                    IgnoreErrorsIntegration::class,
                     UserRoleSentryIntegration::class,
                 ],
                 "in_app_exclude" => [

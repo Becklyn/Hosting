@@ -1,3 +1,9 @@
+3.2.1
+=====
+
+*   (bug) Fix Sentry exception filter not properly working after upgrading the Sentry SDK.
+
+
 3.2.0
 =====
 
