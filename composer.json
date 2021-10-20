@@ -21,16 +21,16 @@
         "php": ">=7.4",
         "ext-json": "*",
         "becklyn/assets-bundle": "^2.6.9",
-        "sentry/sentry-symfony": "^4.2.0",
+        "sentry/sentry-symfony": "^4.2.3",
         "symfony/cache-contracts": "^2.4.0",
         "symfony/config": "^5.3.4",
-        "symfony/console": "^5.3.6",
-        "symfony/dependency-injection": "^5.3.4",
-        "symfony/http-kernel": "^5.3.6"
+        "symfony/console": "^5.3.7",
+        "symfony/dependency-injection": "^5.3.8",
+        "symfony/http-kernel": "^5.3.9"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^5.3.4",
-        "twig/twig": "^2.0 || ^3.3.2"
+        "symfony/phpunit-bridge": "^5.3.8",
+        "twig/twig": "^2.0 || ^3.3.3"
     },
     "config": {
         "sort-packages": true

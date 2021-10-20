@@ -1,3 +1,10 @@
+3.2.2
+=====
+
+*   (improvement) Require the latest version of `sentry/sentry-symfony` in order to fix deprecation warning.
+*   (improvement) Upgrade all dependencies to their latest version.
+
+
 3.2.1
 =====
 
