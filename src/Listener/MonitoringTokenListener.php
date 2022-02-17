@@ -9,12 +9,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class MonitoringTokenListener implements EventSubscriberInterface
 {
-    /** @var string */
-    private $uptimeHtmlEmbed;
+    private string $uptimeHtmlEmbed;
 
 
-    /**
-     */
     public function __construct (HostingConfig $config)
     {
         $this->uptimeHtmlEmbed = $config->getUptimeMonitorHtmlString();
@@ -26,7 +23,7 @@ class MonitoringTokenListener implements EventSubscriberInterface
     public function onResponse (ResponseEvent $event) : void
     {
         // skip if not master request
-        if (!$event->isMasterRequest() || null === $this->uptimeHtmlEmbed)
+        if (!$event->isMainRequest())
         {
             return;
         }

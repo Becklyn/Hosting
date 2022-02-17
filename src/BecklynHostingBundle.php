@@ -6,6 +6,7 @@ use Becklyn\AssetsBundle\Namespaces\RegisterAssetNamespacesCompilerPass;
 use Becklyn\Hosting\DependencyInjection\BecklynHostingExtension;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class BecklynHostingBundle extends Bundle
@@ -37,7 +38,7 @@ class BecklynHostingBundle extends Bundle
     /**
      * @inheritDoc
      */
-    public function getContainerExtension ()
+    public function getContainerExtension () : ?ExtensionInterface
     {
         return new BecklynHostingExtension($this->releaseVersionPass);
     }

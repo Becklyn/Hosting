@@ -11,7 +11,7 @@ class BecklynHostingConfiguration implements ConfigurationInterface
     /**
      * @inheritDoc
      */
-    public function getConfigTreeBuilder ()
+    public function getConfigTreeBuilder () : TreeBuilder
     {
         $treeBuilder = new TreeBuilder("becklyn_hosting");
 
