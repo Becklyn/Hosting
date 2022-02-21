@@ -5,6 +5,7 @@ namespace Becklyn\Hosting\DependencyInjection;
 use Becklyn\Hosting\Config\HostingConfig;
 use Becklyn\Hosting\DependencyInjection\CompilerPass\ConfigureSentryPass;
 use Becklyn\Hosting\Sentry\Integration\UserRoleSentryIntegration;
+use Composer\InstalledVersions;
 use Sentry\Integration\IgnoreErrorsIntegration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
@@ -89,10 +90,13 @@ class BecklynHostingExtension extends Extension implements PrependExtensionInter
             ],
         ]);
 
-        $container->prependExtensionConfig("sensio_framework_extra", [
-            "psr_message" => [
-                "enabled" => false,
-            ],
-        ]);
+        if (InstalledVersions::isInstalled("sensio/framework-extra-bundle") && \version_compare(InstalledVersions::getVersion("sensio/framework-extra-bundle"), "6.0.0.0", "<"))
+        {
+            $container->prependExtensionConfig("sensio_framework_extra", [
+                "psr_message" => [
+                    "enabled" => false,
+                ],
+            ]);
+        }
     }
 }

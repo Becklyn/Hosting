@@ -1,3 +1,9 @@
+3.3.1
+=====
+
+*   (bug) Only configure `sensio_framework_extra.psr_message.enabled` when installed Version of `sensio/framework-extra-bundle` is <6.0.
+
+
 3.3.0
 =====
 
