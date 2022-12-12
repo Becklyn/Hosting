@@ -18,7 +18,7 @@
     ],
     "homepage": "https://github.com/Becklyn/Hosting",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.1",
         "ext-json": "*",
         "becklyn/assets-bundle": "^2.7.1",
         "sentry/sentry-symfony": "^4.2.6",

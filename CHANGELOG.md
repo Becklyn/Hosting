@@ -1,3 +1,9 @@
+3.4.0
+=====
+
+*   (feature) Add support for PHP 8.1
+
+
 3.3.1
 =====
 
