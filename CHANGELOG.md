@@ -1,3 +1,9 @@
+3.4.1
+=====
+
+*   (bug) Fix `SentryRequestListener` to work with Symfony 6
+
+
 3.4.0
 =====
 

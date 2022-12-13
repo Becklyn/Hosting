@@ -3,8 +3,8 @@
 namespace Becklyn\Hosting\Listener;
 
 use Sentry\SentryBundle\EventListener\RequestListener;
-use Sentry\SentryBundle\EventListener\RequestListenerControllerEvent;
-use Sentry\SentryBundle\EventListener\RequestListenerRequestEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 final class SentryRequestListener
 {
@@ -20,15 +20,13 @@ final class SentryRequestListener
     /**
      * We do not want to log any user details. Therefore, this method is empty.
      */
-    public function handleKernelRequestEvent (RequestListenerRequestEvent $event) : void
+    public function handleKernelRequestEvent (RequestEvent $event) : void
     {
 
     }
 
 
-    /**
-     */
-    public function handleKernelControllerEvent (RequestListenerControllerEvent $event) : void
+    public function handleKernelControllerEvent (ControllerEvent $event) : void
     {
         $this->inner->handleKernelControllerEvent($event);
     }
