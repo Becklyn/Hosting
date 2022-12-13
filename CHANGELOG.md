@@ -1,3 +1,15 @@
+3.4.1
+=====
+
+*   (bug) Fix `SentryRequestListener` to work with Symfony 6
+
+
+3.4.0
+=====
+
+*   (feature) Add support for PHP 8.1
+
+
 3.3.1
 =====
 
