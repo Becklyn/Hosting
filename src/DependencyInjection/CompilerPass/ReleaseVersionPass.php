@@ -36,7 +36,7 @@ class ReleaseVersionPass implements CompilerPassInterface
         $git = new GitIntegration($container->getParameter('kernel.project_dir'));
         $version = $git->fetchHeadCommitHash() ?? "?";
 
-        $container->getDefinition("sentry.client")
+        $container->getDefinition("sentry.client.options")
             ->addMethodCall("setRelease", ["{$this->projectName}@{$version}"]);
     }
 }
